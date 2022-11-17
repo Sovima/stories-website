@@ -7,3 +7,4 @@ A few things to do:
 [] Highlight the card on hover
 [] Contact us page with story suggestions, etc
 [] Profile with bookmarks
+[X] Watch https://www.youtube.com/watch?v=kUMe1FH4CHE&loop=0
