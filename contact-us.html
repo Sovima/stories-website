@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>My first webpage</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+    <header>
+        <nav class="nav-links">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="stories.html">Stories</a></li>
+            </ul>
+        </nav>
+    </header>
+    <h1>Contact us</h1>
+    <section>
+        <p>
+            Please tell us what stories you would like to read next!
+
+            Also any questions, concerns, or suggestions
+        </p>
+    </section>
+    <div>
+        <form action="https://httpbin.org/get" method="get">
+            <p>
+                <label for="firstname">First Name:</label>
+                <input type="text" name="firstname" id="firstname" placeholder="First Name" autocomplete="on">
+            </p>
+            <p>
+                <label for="lastname">Last Name:</label>
+                <input type="text" name="lastname" id="lastname" placeholder="Last Name" autocomplete="on">
+            </p>
+            <p>
+                <label for="email">Email:</label>
+                <input type="text" name="email" id="email" placeholder="jane.doe@mail.com" autocomplete="on">
+            </p>
+            <p>
+                <label for="comments">Comments:</label>
+                <br>
+                <textarea name="message" id="message" cols="30" rows="10" required></textarea>
+            </p>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script src="js/highlights.js"></script>
+</body>
+
+</html>
