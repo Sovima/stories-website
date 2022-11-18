@@ -8,3 +8,5 @@ A few things to do:
 [] Contact us page with story suggestions, etc
 [] Profile with bookmarks
 [X] Watch https://www.youtube.com/watch?v=kUMe1FH4CHE&loop=0
+[] Add the french text - https://teteamodeler.ouest-france.fr/images/conte/pdf/le-chat-botte.pdf
+[] Add link underline hover effect - https://www.youtube.com/watch?v=aswRKAjjWuE&loop=0
