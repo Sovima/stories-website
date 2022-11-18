@@ -4,7 +4,7 @@
 
 
 body {
-    background: linear-gradient(to bottom, rgb(255, 234, 160) 0%, rgba(255,255,0, 0) 10%);
+    /* background: linear-gradient(to bottom, rgb(255, 227, 125) 0%, rgba(255,255,0, 0) 100px); */
     background-repeat: no-repeat;
 }
 
@@ -39,8 +39,8 @@ section.english-side{
 
 
 hr.horizontal{
-    margin:0;
-    border: 3px solid #FFD523;
+    margin:0px;
+    border: 2px solid #ffd7238e;
     border-radius: 5px;
 }
 
@@ -54,20 +54,8 @@ hr.horizontal{
         display: block;
         width: 100%; /* make each section have a width of 50% of the window */
         height: 35vh;
+        margin:5px;
         overflow-y:auto;
-    }
-
-    section.french-side{
-        margin-bottom:2vh
-    }
-
-    .vertical {
-        display:none;
-    }
-
-    hr.horizontal {
-        border: 10px solid #FFD523;
-        border-radius: 5px;
     }
 }
 
