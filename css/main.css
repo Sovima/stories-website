@@ -50,6 +50,14 @@ hr.horizontal{
         margin: 0px 5%;
     }
 
+    section.french-side {
+        margin-bottom:7px;
+    }
+
+    section.english-side {
+        margin-top:7px;
+    }
+
     section {
         display: block;
         width: 100%; /* make each section have a width of 50% of the window */
