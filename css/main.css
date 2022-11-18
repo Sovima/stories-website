@@ -8,13 +8,6 @@ body {
     background-repeat: no-repeat;
 }
 
-.vertical {
-    border-left: 5px solid #FFD523;
-    height: 200px;
-    position:absolute;
-    left: 50%;
-    border-radius: 3px;
-}
 
 body h1{
     text-align: center;
@@ -33,13 +26,58 @@ div.texts{
     justify-content:space-around;
 }
 
-div.french-side{
+
+
+section.french-side{
     flex-basis:45%
 }
 
-div.english-side{
+section.english-side{
+    margin-left:0;
     flex-basis:45%
 }
+
+
+hr.horizontal{
+    margin:0;
+    border: 3px solid #FFD523;
+    border-radius: 5px;
+}
+
+@media screen and (max-width: 600px) {
+    div.texts{
+        display:block;
+        margin: 0px 5%;
+    }
+
+    section {
+        display: block;
+        width: 100%; /* make each section have a width of 50% of the window */
+        height: 35vh;
+        overflow-y:auto;
+    }
+
+    section.french-side{
+        margin-bottom:2vh
+    }
+
+    .vertical {
+        display:none;
+    }
+
+    hr.horizontal {
+        border: 10px solid #FFD523;
+        border-radius: 5px;
+    }
+}
+
+
+
+
+
+
+
+
 
 
 ul {
