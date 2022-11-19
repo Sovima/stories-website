@@ -1,3 +1,11 @@
+h1, h2{
+    color: #2C2E43;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height:30px;
+}
+
+
+
 ul {
     background-color:rgb(255, 234, 160);
     list-style: none;
@@ -7,6 +15,10 @@ ul {
 
 li {
     display:flex;
+}
+
+a {
+    padding: 10px 20px 10px 20px;
 }
 
 li, a{
@@ -29,14 +41,13 @@ header{
 }
 
 
-.nav-links li{
+.nav-links a{
     display:inline-block;
-    padding: 10px 20px 10px 20px;
     transition: 0.3s;
 }
 
 
-.nav-links li:hover{
+.nav-links a:hover{
     background-color:#fff7d1;
     cursor:pointer;
 }
