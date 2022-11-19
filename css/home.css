@@ -7,12 +7,14 @@ body {
 }
 
 
-body h1{
+body h2{
     text-align: left;
     color: #000000;
     padding-top: 0px;
     margin-top:0%;
 }
+
+
 
 body div {
     color: #2C2E43;
@@ -38,9 +40,17 @@ img.image{
     margin: 5% 5%;
 }
 
+div.form, section, h2.contact {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height:30px;
+    color: #2C2E43;
+    margin: 0% 5%;
+}
+
+
 /* Update for smaller screens */
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 900px) {
     div.about-me{
         display: flex;
         flex-direction:column;
@@ -58,53 +68,4 @@ img.image{
         flex-basis:40%;
         margin: 0% 5% 0% 5%;
     }
-}
-
-
-/*
-Header code
-*/
-
-
-ul {
-    background-color:rgb(255, 234, 160);
-    list-style: none;
-    display:flex;
-    padding-left: 0px;
-}
-
-li {
-    display:flex;
-}
-
-li, a{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 22px;
-    text-decoration: none;
-    color: black;
-}
-
-header{
-    align-items:center;
-    display:flex;
-    justify-content:space-around;
-    padding-bottom: 0px;
-}
-
-
-.nav-links {
-    list-style: none;
-}
-
-
-.nav-links li{
-    display:inline-block;
-    padding: 10px 20px 10px 20px;
-    transition: 0.3s;
-}
-
-
-.nav-links li:hover{
-    background-color:#fff7d1;
-    cursor:pointer;
 }
