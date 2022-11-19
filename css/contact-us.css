@@ -1,0 +1,19 @@
+div.firstname {
+    width:100%;
+}
+
+div.firstname input{
+    width:100%;
+}
+
+p.lastname input{
+    width:100%;
+}
+
+p.email input{
+    width:100%;
+}
+
+p.comments input{
+    width:100%;
+}
