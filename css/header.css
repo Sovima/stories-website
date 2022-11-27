@@ -5,6 +5,7 @@ body {
 
 #logo {
     margin:0;
+    font-weight: 700;
 }
 
 .contact-us {
@@ -28,9 +29,10 @@ ul {
     margin:0;
 }
 
+
 a.navlinks {
-    padding:10px;
-    margin: 0;
+    padding:10px 15px;
+    margin: 0px;
     color:black;
 }
 
@@ -50,13 +52,11 @@ a.contact-us {
 li, a {
     font-size:16px;
     text-decoration: none;
-    padding:0px;
     margin:0;
 }
 
-a:hover{
+a.navlinks:hover{
     background-color: #fff7d1;
-    color: black;
     cursor:pointer;
     transition: 0.4s;
 }

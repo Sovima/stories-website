@@ -58,10 +58,11 @@ div.form, section, h2.contact {
         justify-content: space-around;
     }
 
-    img.image{
+    img.about-me{
         align-self:center;
         width: 90%;
         margin: 5% 5%;
+        border: 10px solid #fff7d1;
     }
 
     div.text-side {
