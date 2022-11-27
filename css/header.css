@@ -1,4 +1,29 @@
-h1, h2{
+body{
+    margin:0px;
+}
+
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 5%;
+    margin-top: 10px;
+    background-color: #FFD54F;
+}
+
+ul {
+    list-style: none;
+    display: flex;
+}
+
+
+li, a {
+    text-decoration: none;
+}
+
+
+/* h1, h2{
     color: #2C2E43;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height:30px;
@@ -7,7 +32,7 @@ h1, h2{
 
 
 ul {
-    background-color:rgb(255, 234, 160);
+    background-color:#FFD54F;
     list-style: none;
     display:flex;
     padding-left: 0px;
@@ -50,4 +75,4 @@ header{
 .nav-links a:hover{
     background-color:#fff7d1;
     cursor:pointer;
-}
+} */
