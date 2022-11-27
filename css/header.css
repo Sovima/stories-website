@@ -57,9 +57,8 @@ li, a {
 a:hover{
     background-color: #fff7d1;
     color: black;
-    color: #000;
     cursor:pointer;
-    transition: 0.5s;
+    transition: 0.4s;
 }
 
 
