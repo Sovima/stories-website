@@ -7,6 +7,32 @@ body {
 }
 
 
+
+h2.about-us-heading, h2.contact {
+    color: black;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height:30px;
+    text-decoration-color: #fff7d1;
+}
+
+mark {
+    display: inline-block;
+    background-color: #fff7d1;
+    line-height:0em;
+    padding-bottom: 1em;
+}
+
+
+input, textarea{
+    align-items: center;
+    font-size: 16px;
+    width:30%;
+    border: 2px solid #2C2E43;
+    border-radius: 7px;
+    padding: 5px 10px;
+  }
+
+
 body h2{
     text-align: left;
     color: #000000;
@@ -28,6 +54,8 @@ div.text-side {
     margin: 5% 5% 0% 0%;
 }
 
+
+
 div.about-me{
     display: flex;
     justify-content: space-around;
@@ -41,7 +69,13 @@ img.about-me{
     border: 10px solid #fff7d1;
 }
 
-div.form, section, h2.contact {
+
+h2.contact{
+    margin: 0% 5%;
+}
+
+
+div.form, section {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height:30px;
     color: #2C2E43;
