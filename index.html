@@ -6,7 +6,6 @@
     <title>My first webpage</title>
     <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/contact-us.css">
 </head>
 <body>
     <header>
@@ -22,14 +21,14 @@
     <div class="about-me">
         <img class="about-me" src="img/thumbnail-seals-nationalgeographic_2199074_4x3.webp" alt="That's me" title="That's me">
         <div class="text-side">
-            <h2 class = "about-us-heading">About us</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro exercitationem, delectus ab nemo recusandae numquam ad ea id consequuntur similique quasi officiis tempore esse reiciendis, in repudiandae deleniti vel. Fugit itaque vitae soluta recusandae eaque perferendis sit dolorum consequatur aspernatur laboriosam aperiam doloremque inventore ea deleniti, possimus, illum molestias ut.
+            <h2 class = "about-us-heading"><mark>About us</mark></h2>
+            <p class="text-side">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro exercitationem, delectus ab nemo recusandae numquam ad ea id consequuntur similique quasi officiis tempore esse reiciendis, in repudiandae deleniti vel. Fugit itaque vitae soluta recusandae eaque perferendis sit dolorum consequatur aspernatur laboriosam aperiam doloremque inventore ea deleniti, possimus, illum molestias ut.
             </p>
         </div>
     </div>
 
 
-    <h2 class="contact">Contact us</h2>
+    <h2 class="contact"><mark>Contact us</mark></h2>
     <section>
         <p>
             Please tell us what stories you would like to read next!
@@ -40,25 +39,24 @@
 
 
     <div class="form">
-        <form action="https://httpbin.org/get" method="get">
+        <form class="contact-form" action="https://httpbin.org/get" method="get">
             <div class="firstname">
                 <label for="firstname">First Name:</label>
-                <br>
                 <input type="text" name="firstname" id="firstname" placeholder="First Name" autocomplete="on">
             </div>
-            <p class="lastname">
+            <div class="lastname">
                 <label for="lastname">Last Name:</label>
                 <input type="text" name="lastname" id="lastname" placeholder="Last Name" autocomplete="on">
-            </p>
-            <p class="email">
+            </div>
+            <div class="email">
                 <label for="email">Email:</label>
                 <input type="text" name="email" id="email" placeholder="jane.doe@mail.com" autocomplete="on">
-            </p>
-            <p class="comments">
+            </div>
+            <div class="comments">
                 <label for="comments">Comments:</label>
                 <br>
                 <textarea name="message" id="message" cols="30" rows="10" required></textarea>
-            </p>
+            </div>
             <button type="submit">Submit</button>
         </form>
     </div>
