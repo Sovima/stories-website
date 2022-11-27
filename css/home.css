@@ -33,11 +33,12 @@ div.about-me{
     justify-content: space-around;
 }
 
-img.image{
+img.about-me{
     align-self:start;
     flex-basis: 50%;
     width:50%;
     margin: 5% 5%;
+    border: 10px solid #fff7d1;
 }
 
 div.form, section, h2.contact {
