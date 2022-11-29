@@ -33,6 +33,7 @@ body h2{
 
 
 
+
 body div {
     color: #2C2E43;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -53,6 +54,7 @@ div.about-me{
 }
 
 img.about-me{
+    box-sizing: border-box;
     align-self:start;
     flex-basis: 50%;
     width:50%;
@@ -65,13 +67,22 @@ h2.contact{
     margin: 0% 5%;
 }
 
-
-div.form, section {
+section {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height:30px;
     color: #2C2E43;
     margin: 0% 5%;
 }
+
+form.contact-form{
+    margin-right:0%;
+    padding:0;
+}
+
+/* section {
+    margin: 0% 5%;
+} */
+
 /* 
 label { 
     display: inline-block; 
@@ -92,16 +103,11 @@ input, textarea{
     padding: 5px 10px;
   } */
 
-label{
-    display: table-cell;
-    text-align: left;
-}
 input, textarea{
-  display: table-cell;
-  align-self: left;
   font-size: 16px;
-  width:70%;
-  margin-left: 15px;
+  width:90%;
+  margin-left: 5%;
+  box-sizing: border-box;
   border: 2px solid #2C2E43;
   border-radius: 7px;
   padding: 5px 10px;
@@ -112,11 +118,18 @@ textarea {
 }
 
 input {
-    margin-bottom: 8px;
+    margin-bottom: 20px;
 }
-div.row{
-    display:table-row;
+
+button{
+    margin: 20px 5% 20px;
+    font-size:16px;
+    border-radius: 7px;
+    padding: 5px;
+    background-color: #fff7d1;
+    border: 2px solid #2C2E43;
 }
+
 
 
 
@@ -131,7 +144,7 @@ div.row{
 
     img.about-me{
         align-self:center;
-        width: 90%;
+        width: 90vw;
         margin: 5% 5%;
         border: 10px solid #fff7d1;
     }
@@ -139,6 +152,6 @@ div.row{
     div.text-side {
         display:block;
         flex-basis:40%;
-        margin: 0% 5% 0% 5%;
+        margin: 0% 5%;
     }
 }
