@@ -25,22 +25,47 @@ if images of other dimensions are uploaded */
 
 /* Add classes to figures as more are added */
 
+
 li.story-cards {
-    width: 100px;
+    width: 30%;
     padding: 0;
-    margin:0;
     margin-bottom: 5%;
-    background-color: red;
+    /* background-color: red; */
+    flex-basis: 40vw;
+    text-align: center;
+    background: linear-gradient(to top, white 30%, #fff7d1 80%);
+    border: 10px solid #FFD54F;
+    /* FFD54F 
+       fff7d1*/
 }
+ 
+
+
 
 img {
     max-width: 100%;
+    /* background-color: blue; */
+    margin:0;
 }
 
-.story-cards {
+ul.story-cards {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-between;
     height:auto;
+    margin:5%;
+    margin-top:0;
+    padding:0;
+}
+
+/* Style the text under image */
+h3 {
+    font-weight: normal;
+    color: #000000;
+    padding-top: 0px;
+    margin: 5% 5%;
+    color: black;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height:30px;
 }
 
