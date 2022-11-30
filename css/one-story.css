@@ -3,11 +3,13 @@
 } */
 
 
-body {
-    /* background: linear-gradient(to bottom, rgb(255, 227, 125) 0%, rgba(255,255,0, 0) 100px); */
-    background-repeat: no-repeat;
+div.top {
+    display: inline;
 }
 
+div.back-button {
+    margin:5%;
+}
 
 body h1{
     text-align: center;
@@ -15,7 +17,7 @@ body h1{
     padding-top: 0px;
 }
 
-body div {
+body div.texts {
     color: #2C2E43;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height:30px;
@@ -29,12 +31,13 @@ div.texts{
 
 
 section.french-side{
-    flex-basis:45%
+    margin-left:5%;
+    margin-right: 2%;
 }
 
 section.english-side{
-    margin-left:0;
-    flex-basis:45%
+    margin-left:2%;
+    margin-right:5%;
 }
 
 

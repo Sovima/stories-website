@@ -51,7 +51,7 @@ html {
     border-style: solid;
     box-shadow: 5px 5px #fff7d1;
     transition: 0.2s;
-    padding-top:10px;
+    padding-top:0px;
 }
 
 
@@ -62,6 +62,7 @@ img {
     width: 100%;
     height: 25vw;
     object-fit: cover;
+    margin-top:0;
     object-position: 100% 0;
 }
 
