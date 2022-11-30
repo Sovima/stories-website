@@ -144,9 +144,11 @@ button{
 
     img.about-me{
         align-self:center;
+        box-shadow: 10px 10px #fff7d1;
         width: 90vw;
         margin: 5% 5%;
-        border: 10px solid #fff7d1;
+        border-radius: 7px;
+        border: none;
     }
 
     div.text-side {
