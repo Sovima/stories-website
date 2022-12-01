@@ -46,6 +46,8 @@ a.back-button:visited {
 
 a.back-button:hover {
     background-color:#FFD54F;
+    cursor: pointer;
+    transition:0.3s;
 }
 
 /* Back arrow */
