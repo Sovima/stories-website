@@ -122,6 +122,7 @@ button:hover {
 
 @media screen and (max-width: 900px) {
     div.about-me{
+        margin-top:5vh;
         display: flex;
         flex-direction:column;
         justify-content: space-around;
