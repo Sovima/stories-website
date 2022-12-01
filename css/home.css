@@ -13,6 +13,7 @@ h2.about-us-heading, h2.contact {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height:30px;
     text-decoration-color: #fff7d1;
+    font-size:24px;
 }
 
 mark {
@@ -122,12 +123,17 @@ input {
 }
 
 button{
-    margin: 20px 5% 20px;
-    font-size:16px;
+    background-color:#fff7d1;
+    border: 1.5px solid black;
     border-radius: 7px;
-    padding: 5px;
-    background-color: #fff7d1;
-    border: 2px solid #2C2E43;
+    padding: 5px 10px;
+    margin: 20px 5vw;  
+    text-decoration: none;
+}
+
+button:hover {
+    background-color:#FFD54F;
+    cursor: pointer;
 }
 
 
