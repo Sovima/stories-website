@@ -5,6 +5,10 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+a {
+    text-decoration: none;
+}
+
 body {
     margin:0;
 }
@@ -30,7 +34,7 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 10px 5%;
-    margin-top: 0;
+    margin: 0;
     background-color: #FFD54F;
     height:auto;
     border-bottom: 10px solid #fff7d1;
