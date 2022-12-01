@@ -1,6 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap');
+
 
 * {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
@@ -15,15 +17,20 @@ body {
 
 .contact-us {
     background: #fff7d1;
+    margin: 5px;
+    padding: 7px 12px;
+    font-family: 'Montserrat', sans-serif;
+    border-radius: 20px;
+    border: 0.5px solid black;
+    font-size: 16px;
 }
 
 header {
     display: flex;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     justify-content: space-between;
     align-items: center;
-    padding: 0px 5%;
-    margin-top: 10px;
+    padding: 10px 5%;
+    margin-top: 0;
     background-color: #FFD54F;
     height:auto;
 }
@@ -35,33 +42,23 @@ ul {
 }
 
 
-a.navlinks {
-    padding:10px 15px;
-    margin: 0px;
-    color:black;
-}
-
-a.contact-us {
-    padding: 0;
-}
-
-
-.contact-us {
-    margin: 0;
-    padding: 7px 12px;
-    border-radius: 20px;
-    border-width: 0px;
-    font-size: 16px;
-}
-
 li, a.navbar {
     font-size:16px;
+    font-family: 'Montserrat', sans-serif;
     text-decoration: none;
-    margin:0;
+}
+
+
+a.navlinks {
+    padding:10px 15px;
+    margin-left: 10px;
+    margin-right: 10px;
+    color:black;
 }
 
 a.navlinks:hover{
     background-color: #fff7d1;
     cursor:pointer;
+    border-radius:20px;
     transition: 0.4s;
 }
