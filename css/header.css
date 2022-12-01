@@ -33,6 +33,7 @@ header {
     margin-top: 0;
     background-color: #FFD54F;
     height:auto;
+    border-bottom: 10px solid #fff7d1;
 }
 
 ul {
