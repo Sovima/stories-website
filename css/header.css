@@ -13,6 +13,10 @@ body {
     margin:0;
 }
 
+.contact-us:hover{
+    background-color: #ffee9a;
+}
+
 
 #logo {
     margin:0;
@@ -62,8 +66,8 @@ a.navlinks {
 }
 
 a.navlinks:hover{
-    background-color: #fff7d1;
+    background-color: #ffee9a;
     cursor:pointer;
-    border-radius:20px;
+    border-radius:10px;
     transition: 0.4s;
 }
