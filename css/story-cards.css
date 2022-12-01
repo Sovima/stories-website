@@ -17,6 +17,7 @@ body h2{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height:30px;
     text-decoration-color: #fff7d1;
+    font-size:24px;
 }
 
 
@@ -89,7 +90,7 @@ h3 {
     text-align: center;
     color: black;
     border-style: solid;
-    border-width: px;
+    border-width: 1.5px;
     background-color: #fff7d1;
     border-radius: 7px;
     transition: 0.2s;
