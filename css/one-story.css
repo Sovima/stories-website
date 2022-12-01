@@ -50,6 +50,21 @@ a.back-button:hover {
     transition:0.3s;
 }
 
+a.back-button i {
+    margin-right: 1rem;
+    margin-left: 0.5rem;
+    transition: 0.2s;
+}
+
+a.back-button:hover >i{
+    margin-right: 1.5rem;
+    transition: 0.2s;
+}
+
+a.back-button:hover, a.back-button:active {
+    background-color: #ffee9a;
+}
+
 /* Back arrow */
 i.back-arrow {
     border: solid black;
