@@ -16,6 +16,7 @@ body {
 .contact-us:hover{
     background-color: #ffee9a;
     transition:0.3s;
+    cursor:pointer;
 }
 
 
