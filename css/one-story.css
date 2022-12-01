@@ -1,25 +1,65 @@
-/* .classA:hover {
-    background-color: rgb(255, 202, 87);
-} */
-
-
+/* Top */
 div.top {
-    display: inline;
+    display: block;
+    align-items: center;
+    margin: 5%;
 }
 
-div.back-button {
-    margin:5%;
+/* header */
+
+h1 {
+    color: black;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height:30px;
+    text-decoration-color: #fff7d1;
+    text-align: left;
+    /* background-color: red; */
+    margin-bottom:0;
+    padding:0;
+    font-size:24px;
+    display: flex;
+    align-items: center;
 }
 
-body h1{
-    text-align: center;
-    color: #000000;
-    padding-top: 0px;
+mark {
+    display: inline-block;
+    background-color: #fff7d1;
+    line-height:0;
+    padding-bottom: 1em;
 }
 
+
+/* Back-button */
+a.back-button {
+    background-color:#fff7d1;
+    border: 2px solid black;
+    border-radius: 7px;
+    padding: 5px 10px;
+    text-decoration: none;
+}
+
+a.back-button:visited {
+    color: black;
+}
+
+a.back-button:hover {
+    background-color:#FFD54F;
+}
+
+/* Back arrow */
+i.back-arrow {
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 4px;
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+  }
+
+
+/* The texts */
 body div.texts {
     color: #2C2E43;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height:30px;
 }
 
@@ -40,32 +80,31 @@ section.english-side{
     margin-right:5%;
 }
 
-
+/* The split line */
 hr.horizontal{
     margin:0px;
     border: 2px solid #ffd7238e;
     border-radius: 5px;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 900px) {
     div.texts{
         display:block;
-        margin: 0px 5%;
     }
 
     section.french-side {
-        margin-bottom:7px;
+        margin-bottom:5%;
     }
 
     section.english-side {
-        margin-top:7px;
+        margin-top:5%;
+        margin-left:5%;
     }
 
     section {
         display: block;
         width: 100%; /* make each section have a width of 50% of the window */
-        height: 35vh;
-        margin:5px;
+        height: 30vh;
         overflow-y:auto;
     }
 }
