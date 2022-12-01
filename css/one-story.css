@@ -34,7 +34,7 @@ mark {
 /* Back-button */
 a.back-button {
     background-color:#fff7d1;
-    border: 2px solid black;
+    border: 1.5px solid black;
     border-radius: 7px;
     padding: 5px 10px;
     text-decoration: none;
@@ -72,28 +72,35 @@ div.texts{
 
 
 
-section.french-side{
-    margin-left:5%;
-    margin-right: 2%;
+section.french-side {
+    margin-left:5vw;
+    border: 2px solid black;
+    margin-bottom:1%;
+    padding:1vh 2%;
+    border-radius:7px;
 }
 
-section.english-side{
+section.english-side {
+    margin-left:2vw;
+    margin-right:5vw;
     border: 2px solid black;
-    margin-left:2%;
-    margin-right:5%;
+    background-color:#fff7d1;
+    margin-bottom:0;
+    padding:1vh 2%;
+    margin-bottom:1%;
+    border-radius:7px;
 }
 
 /* The split line */
 hr.horizontal{
     margin:0px;
-    border: 2px solid #ffd7238e;
-    border-radius: 5px;
+    border: none;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 900px) {
     div.texts{
         display:block;
-        height:75vh;
+        height:77vh;
         /* background-color:red; */
     }
 
@@ -120,7 +127,7 @@ hr.horizontal{
 
     section {
         width: 86%; /* make each section have a width of 50% of the window */
-        height: 32vh;
+        height: 33vh;
         overflow-y:auto;
     }
 }
