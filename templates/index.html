@@ -1,63 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>My first webpage</title>
-    <link rel="stylesheet" href="../css/home.css">
-    <link rel="stylesheet" href="../css/header.css">
-</head>
-<body>
-    <header>
-        <p id="logo">Logo</p>
-        <nav class="nav-links">
-            <ul>
-                <a class="navlinks navbar" href="/"><li>HOME</li></a>
-                <a class="navlinks navbar" href="/stories"><li>STORIES</li></a>
-            </ul>
-        </nav>
-        <a class="contact-us-link navbar" href="#contact-section"><button class="contact-us">Contact us</button></a>
-    </header>
-    <div class="about-me">
-        <img class="about-me" src="img/thumbnail-seals-nationalgeographic_2199074_4x3.webp" alt="That's me" title="That's me">
-        <div class="text-side">
-            <h2 class = "about-us-heading"><mark>About us</mark></h2>
-            <p class="text-side">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro exercitationem, delectus ab nemo recusandae numquam ad ea id consequuntur similique quasi officiis tempore esse reiciendis, in repudiandae deleniti vel. Fugit itaque vitae soluta recusandae eaque perferendis sit dolorum consequatur aspernatur laboriosam aperiam doloremque inventore ea deleniti, possimus, illum molestias ut.
-            </p>
-        </div>
-    </div>
+{% extends "layout.html" %}
 
-
-    <h2 class="contact" id="contact-section"><mark>Contact us</mark></h2>
-    <section>
-        <p>
-            Please tell us what stories you would like to read next!
-
-            Also any questions, concerns, or suggestions
+{% block body %}
+<div class="about-me">
+    <img class="about-me" src="img/thumbnail-seals-nationalgeographic_2199074_4x3.webp" alt="That's me" title="That's me">
+    <div class="text-side">
+        <h2 class = "about-us-heading"><mark>About us</mark></h2>
+        <p class="text-side">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro exercitationem, delectus ab nemo recusandae numquam ad ea id consequuntur similique quasi officiis tempore esse reiciendis, in repudiandae deleniti vel. Fugit itaque vitae soluta recusandae eaque perferendis sit dolorum consequatur aspernatur laboriosam aperiam doloremque inventore ea deleniti, possimus, illum molestias ut.
         </p>
-    </section>
-
-
-    <div class="form">
-        <form class="contact-form" action="https://httpbin.org/get" method="get">
-            <div class="firstname row">
-                <input type="text" name="firstname" id="firstname" placeholder="First Name" autocomplete="on"><br>
-            </div>
-            <div class="lastname row">
-                <input type="text" name="lastname" id="lastname" placeholder="Last Name" autocomplete="on"><br>
-            </div>
-            <div class="email row">
-                <input type="text" name="email" id="email" placeholder="jane.doe@mail.com" autocomplete="on"><br>
-            </div>
-            <div class="comments row">
-                <textarea name="message" id="message" cols="30" rows="10" required></textarea><br>
-            </div>
-            <button type="submit">Submit</button>
-        </form>
     </div>
+</div>
 
-    <script src="js/highlights.js"></script>
-    
-    
-</body>
-</html>
+
+<h2 class="contact" id="contact-section"><mark>Contact us</mark></h2>
+<section>
+    <p>
+        Please tell us what stories you would like to read next!
+
+        Also any questions, concerns, or suggestions
+    </p>
+</section>
+
+
+<div class="form">
+    <form class="contact-form" action="https://httpbin.org/post" method="post">
+        <div class="firstname row">
+            <input type="text" name="firstname" id="firstname" placeholder="First Name" autocomplete="on"><br>
+        </div>
+        <div class="lastname row">
+            <input type="text" name="lastname" id="lastname" placeholder="Last Name" autocomplete="on"><br>
+        </div>
+        <div class="email row">
+            <input type="text" name="email" id="email" placeholder="jane.doe@mail.com" autocomplete="on"><br>
+        </div>
+        <div class="comments row">
+            <textarea name="message" id="message" cols="30" rows="10" required></textarea><br>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+<script src="js/highlights.js"></script>
+
+{% endblock %}
