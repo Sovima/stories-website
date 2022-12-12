@@ -3,6 +3,7 @@
 
 * {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: 0.3s;
 }
 
 .dot {
@@ -30,6 +31,8 @@
     border-width: 1px;
   }
 
+
+
 a {
     text-decoration: none;
 }
@@ -40,7 +43,6 @@ body {
 
 .contact-us:hover{
     background-color: #ffee9a;
-    transition:0.3s;
     cursor:pointer;
 }
 
@@ -96,5 +98,79 @@ a.navlinks:hover{
     background-color:#fff7d1;
     cursor:pointer;
     border-radius:10px;
-    transition: 0.4s;
+}
+
+
+
+
+
+
+
+
+
+/* Dark mode */
+
+body.dark .dot {
+    height: 19px;
+    width: 19px;
+    background-color: #FFD54F;
+    border-radius: 50%;
+    border-color:black;
+    border-width: 0.5px;
+    border-style: solid;
+    vertical-align: top;
+    display: inline-block;
+    margin-left: 5px;
+    transform: translateX(28px);
+  }
+
+
+body.dark #light-dark-switch {
+    text-align: left;
+    height: 30px;
+    padding:0;
+    vertical-align: middle ;
+    width: 60px;
+    background-color: #383f46;
+    border-radius: 15px;
+    border-width: 1px;
+  }
+
+
+body.dark .contact-us {
+    background: #383f46;
+    margin: 5px;
+    padding: 7px 12px;
+    font-family: 'Montserrat', sans-serif;
+    border-radius: 20px;
+    color:#FFD54F;
+    border: 0.5px solid #000000;
+    font-size: 16px;
+}
+
+
+body.dark header{
+    background-color: black;
+    border-bottom: 10px solid #fff7d1;
+}
+
+
+
+body.dark a.navlinks {
+    color:#fff7d1;
+}
+
+body.dark .contact-us:hover{
+    background-color: #515247;
+}
+
+
+
+body.dark a.navlinks:hover{
+    background-color: #383f46;
+}
+
+
+body.dark  #logo{
+    color:#fff7d1;
 }
