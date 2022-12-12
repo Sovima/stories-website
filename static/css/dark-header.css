@@ -1,6 +1,35 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap');
 
 
+
+.dot {
+    height: 19px;
+    width: 19px;
+    background-color: #ffee9a;
+    border-radius: 50%;
+    border-color:black;
+    border-width:0.5px;
+    border-style: solid;
+    vertical-align: top;
+    display: inline-block;
+    margin-left:5px;
+  }
+
+
+  #light-dark-switch {
+    transition:0.3s;
+    text-align: right;
+    height: 30px;
+    padding:0;
+    vertical-align: middle ;
+    width: 60px;
+    background-color: #fff7d1;
+    border-radius: 15px;
+    border-width: 1px;
+  }
+
+
+
 * {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
