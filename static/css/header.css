@@ -5,6 +5,23 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.dot {
+    height: 20px;
+    width: 20px;
+    background-color: #ffee9a;
+    border-radius: 10px;
+    display: inline-block;
+  }
+
+
+  #light-dark-switch {
+    height: 10px;
+    vertical-align: middle ;
+    width: 40px;
+    background-color: #fff7d1;
+    border-radius: 10px;
+  }
+
 a {
     text-decoration: none;
 }
