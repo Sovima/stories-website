@@ -84,20 +84,36 @@ li, a.navbar {
     font-size:16px;
     font-family: 'Montserrat', sans-serif;
     text-decoration: none;
+    display: inline-block;
 }
 
 
 a.navlinks {
+    position:relative;
+    text-align: center;
+    width:70px;
+    letter-spacing:0.5px;
     padding:10px 15px;
     margin-left: 10px;
     margin-right: 10px;
     color:black;
 }
 
-a.navlinks:hover{
+a.navlinks:after {
+    content:"";
+    position: absolute;
+    width:0%;
+    left:0;
+    border-radius: 2px;
     background-color:#fff7d1;
-    cursor:pointer;
-    border-radius:10px;
+    height:5px;
+    bottom:0px;
+}
+
+
+a.navlinks:hover:after {
+    transition:0.3s;
+    width:100%;
 }
 
 
@@ -167,9 +183,13 @@ body.dark .contact-us:hover{
 
 
 body.dark a.navlinks:hover{
-    background-color: #383f46;
+    background-color: black;
+    border-bottom: 0px solid #515247;
 }
 
+body.dark a.navlinks:after {
+    background-color:#515247;
+}
 
 body.dark  #logo{
     color:#fff7d1;
