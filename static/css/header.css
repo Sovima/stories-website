@@ -6,20 +6,28 @@
 }
 
 .dot {
-    height: 20px;
-    width: 20px;
+    height: 19px;
+    width: 19px;
     background-color: #ffee9a;
-    border-radius: 10px;
+    border-radius: 50%;
+    border-color:black;
+    border-width:0.5px;
+    border-style: solid;
+    vertical-align: top;
     display: inline-block;
+    margin-left:5px;
   }
 
 
   #light-dark-switch {
-    height: 10px;
+    text-align: left;
+    height: 30px;
+    padding:0;
     vertical-align: middle ;
-    width: 40px;
+    width: 60px;
     background-color: #fff7d1;
-    border-radius: 10px;
+    border-radius: 15px;
+    border-width: 1px;
   }
 
 a {
