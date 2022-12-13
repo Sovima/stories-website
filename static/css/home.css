@@ -1,35 +1,25 @@
-/* .classA:hover {
-    background-color: rgb(255, 202, 87);
-} */
-
 body {
     background-color: rgb(255, 255, 255);
 }
 
 
-
-h2.about-us-heading, h2.contact {
-    color: black;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height:30px;
-    text-decoration-color: #fff7d1;
-    font-size:24px;
-}
-
 mark {
+    color: #fff7d1;
     display: inline-block;
     background-color: #fff7d1;
     line-height:0em;
     padding-bottom: 1em;
 }
 
-
-
-body h2{
+h2 {
     text-align: left;
-    color: #000000;
+    /* color: #000000; */
+    color: #fff7d1 !important;
     padding-top: 0px;
     margin-top:0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height:30px;
+    font-size:24px;
 }
 
 
@@ -130,7 +120,6 @@ button:hover {
 
     img.about-me{
         align-self:center;
-        box-shadow: 10px 10px #fff7d1;
         width: 90vw;
         margin: 5% 5%;
         border-radius: 7px;
@@ -142,4 +131,32 @@ button:hover {
         flex-basis:40%;
         margin: 0% 5%;
     }
+}
+
+
+
+
+
+/* Dark mode */
+body.dark {
+    background-color: #201B0A;
+}
+
+
+body.dark p {
+    color:#fff7d1;
+}
+
+body.dark mark {
+    background-color: transparent;
+}
+
+
+body.dark .about-us-heading {
+    color: #ddb800 !important;
+}
+
+
+body.dark img.about-me{
+    box-shadow: 0;
 }
