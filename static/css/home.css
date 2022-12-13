@@ -4,9 +4,8 @@ body {
 
 
 mark {
-    color: #fff7d1;
     display: inline-block;
-    background-color: #fff7d1;
+    background-color: var(--light-yellow);
     line-height:0em;
     padding-bottom: 1em;
 }
@@ -14,7 +13,7 @@ mark {
 h2 {
     text-align: left;
     /* color: #000000; */
-    color: #fff7d1 !important;
+    color: var(--light-yellow) !important;
     padding-top: 0px;
     margin-top:0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -45,7 +44,7 @@ div.about-me{
 }
 
 img.about-me{
-    box-shadow: 10px 10px #fff7d1;
+    box-shadow: 10px 10px var(--light-yellow);
     box-sizing: border-box;
     align-self:start;
     flex-basis: 50%;
@@ -90,8 +89,8 @@ input {
     margin-bottom: 20px;
 }
 
-button{
-    background-color:#fff7d1;
+button.submit {
+    background-color:var(--light-yellow);
     border: 1.5px solid black;
     border-radius: 7px;
     padding: 5px 10px;
@@ -121,7 +120,7 @@ button:hover {
     img.about-me{
         align-self:center;
         width: 90vw;
-        margin: 5% 5%;
+        margin: 1% 5% 5% 5%;
         border-radius: 7px;
         border: none;
     }
@@ -139,7 +138,7 @@ button:hover {
 
 /* Dark mode */
 body.dark {
-    background-color: #333;
+    background-color: #272727;
 }
 
 
@@ -152,11 +151,30 @@ body.dark mark {
 }
 
 
-body.dark .about-us-heading {
-    color: #ddb800 !important;
+body.dark img.about-me{
+    border: 10px solid black;
+    box-shadow: 0 0 transparent;
 }
 
 
-body.dark img.about-me{
-    box-shadow: 0 0 transparent;
+body.dark mark {
+    color: var(--base-yellow)
+}
+
+
+body.dark button.submit {
+    background-color:var(--light-grey);
+    border: 1.5px solid var(--transparent-yellow);
+    color:var(--base-yellow)
+}
+
+
+body.dark button.submit:hover {
+    background-color:var(--lighter-grey);
+}
+
+
+body.dark input, body.dark textarea{
+    background-color: var(--light-grey);
+    border: 0 solid var(--transparent-yellow);
 }
