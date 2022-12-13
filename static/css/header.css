@@ -4,8 +4,10 @@
     --transparent-yellow: #ffd64f5f;
     --light-yellow: #fff7d1;
     --deep-grey: #272727;
-    --light-grey: #383f46;
+    --light-grey: #4a4a4a;
+    --lighter-grey: #686868;
 }
+
 
 * {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -16,11 +18,9 @@
 .dot {
     height: 19px;
     width: 19px;
-    background-color: #ffee9a;
+    background-color: var(--base-yellow);
     border-radius: 50%;
     border-color:black;
-    border-width:0.5px;
-    border-style: solid;
     vertical-align: top;
     display: inline-block;
     margin-left:5px;
@@ -35,7 +35,7 @@
     width: 60px;
     background-color: var(--light-yellow);
     border-radius: 15px;
-    border-width: 1px;
+    border-width: 0px;
   }
 
 
@@ -156,7 +156,6 @@ body.dark #light-dark-switch {
     width: 60px;
     background-color: var(--deep-grey);
     border-radius: 15px;
-    border-width: 1px;
   }
 
 
@@ -187,11 +186,8 @@ body.dark .contact-us:hover{
     background-color: var(--light-grey);
 }
 
-
-
 body.dark a.navlinks:hover{
     background-color: black;
-    border-bottom: 0px solid var(--base-yellow);
 }
 
 body.dark a.navlinks:after {
@@ -200,9 +196,4 @@ body.dark a.navlinks:after {
 
 body.dark  #logo{
     color:var(--light-yellow);
-}
-
-body.dark input {
-    background-color: var(--light-grey);
-    border: 2px solid var(--transparent-yellow);
 }
