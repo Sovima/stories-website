@@ -168,7 +168,7 @@ body.dark .contact-us {
 
 body.dark header{
     background-color: black;
-    border-bottom: 10px solid #fff7d1;
+    border-bottom: 10px solid #FFD54F;
 }
 
 
@@ -185,7 +185,7 @@ body.dark .contact-us:hover{
 
 body.dark a.navlinks:hover{
     background-color: black;
-    border-bottom: 0px solid #515247;
+    border-bottom: 0px solid #FFD54F;
 }
 
 body.dark a.navlinks:after {
