@@ -4,6 +4,7 @@
 * {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     transition: 0.3s;
+    color:black;
 }
 
 .dot {
@@ -20,7 +21,7 @@
   }
 
 
-  #light-dark-switch {
+#light-dark-switch {
     text-align: left;
     height: 30px;
     padding:0;
