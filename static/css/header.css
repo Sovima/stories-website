@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap');
-
+:root {
+    --base-yellow: #FFD54F;
+    --transparent-yellow: #ffd64f5f;
+    --light-yellow: #fff7d1;
+    --deep-grey: #272727;
+    --light-grey: #383f46;
+}
 
 * {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -27,7 +33,7 @@
     padding:0;
     vertical-align: middle ;
     width: 60px;
-    background-color: #fff7d1;
+    background-color: var(--light-yellow);
     border-radius: 15px;
     border-width: 1px;
   }
@@ -54,7 +60,7 @@ body {
 }
 
 .contact-us {
-    background: #fff7d1;
+    background: var(--light-yellow);
     margin: 5px;
     padding: 7px 12px;
     font-family: 'Montserrat', sans-serif;
@@ -69,9 +75,9 @@ header {
     align-items: center;
     padding: 10px 5%;
     margin: 0;
-    background-color: #FFD54F;
+    background-color: var(--base-yellow);
     height:auto;
-    border-bottom: 10px solid #fff7d1;
+    border-bottom: 10px solid var(--light-yellow);
 }
 
 ul {
@@ -106,7 +112,7 @@ a.navlinks:after {
     width:0%;
     left:0;
     border-radius: 2px;
-    background-color:#fff7d1;
+    background-color:var(--light-yellow);
     height:5px;
     bottom:0px;
 }
@@ -130,7 +136,7 @@ a.navlinks:hover:after {
 body.dark .dot {
     height: 19px;
     width: 19px;
-    background-color: #FFD54F;
+    background-color: var(--base-yellow);
     border-radius: 50%;
     border-color:black;
     border-width: 0.5px;
@@ -148,50 +154,55 @@ body.dark #light-dark-switch {
     padding:0;
     vertical-align: middle ;
     width: 60px;
-    background-color: #383f46;
+    background-color: var(--deep-grey);
     border-radius: 15px;
     border-width: 1px;
   }
 
 
 body.dark .contact-us {
-    background: #383f46;
+    background: var(--deep-grey);
     margin: 5px;
     padding: 7px 12px;
     font-family: 'Montserrat', sans-serif;
     border-radius: 20px;
-    color:#FFD54F;
-    border: 0.5px solid #000000;
+    color:var(--base-yellow);
+    border: 0.5px solid black;
     font-size: 16px;
 }
 
 
 body.dark header{
     background-color: black;
-    border-bottom: 10px solid #FFD54F;
+    border-bottom: 10px solid var(--base-yellow);
 }
 
 
 
 body.dark a.navlinks {
-    color:#fff7d1;
+    color:var(--light-yellow);
 }
 
 body.dark .contact-us:hover{
-    background-color: #515247;
+    background-color: var(--light-grey);
 }
 
 
 
 body.dark a.navlinks:hover{
     background-color: black;
-    border-bottom: 0px solid #FFD54F;
+    border-bottom: 0px solid var(--base-yellow);
 }
 
 body.dark a.navlinks:after {
-    background-color:#515247;
+    background-color:var(--light-grey);
 }
 
 body.dark  #logo{
-    color:#fff7d1;
+    color:var(--light-yellow);
+}
+
+body.dark input {
+    background-color: var(--light-grey);
+    border: 2px solid var(--transparent-yellow);
 }
