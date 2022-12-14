@@ -92,11 +92,14 @@ input {
 
 button.submit {
     background-color:var(--light-yellow);
-    border: 1.5px solid black;
+    border: 2px solid black;
     border-radius: 7px;
     padding: 5px 10px;
     margin: 20px 5vw;  
     text-decoration: none;
+    font-weight: 100;
+    font-size:16px;
+    letter-spacing:1px;
 }
 
 button:hover {
@@ -143,11 +146,11 @@ body.dark {
 
 
 body.dark p {
-    color:rgba(255, 255, 255, 0.8);
+    color:var(--text-grey);
 }
 
 body.dark mark {
-    background-color: var(--light-grey);
+    background-color: transparent;
 }
 
 
@@ -163,8 +166,8 @@ body.dark mark {
 
 body.dark button.submit {
     background-color:var(--light-grey);
-    border: 1px solid var(--transparent-yellow);
-    color:var(--base-yellow)
+    border: 0px solid var(--transparent-yellow);
+    color: var(--base-yellow);
 }
 
 
@@ -174,6 +177,7 @@ body.dark button.submit:hover {
 
 
 body.dark input, body.dark textarea{
+    color:var(--text-grey);
     background-color: var(--light-grey);
-    border: 0 solid var(--transparent-yellow);
+    border: 0px solid var(--transparent-yellow);
 }
