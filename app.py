@@ -33,13 +33,18 @@ def puss_in_boots():
     return render_template("puss-in-boots.html", css_link="/static/css/one-story.css")
 
 
-@app.route("/", methods=["POST"])
+@app.route("/submit-form", methods=["POST"])
 def submit_form():
-    user_email = request.form.get("email")
-    message = Message("This is the test email sent from %s" % user_email, sender= os.getenv("MAIL_DEFAULT_SENDER"), 
+    user_email = request.get_json()["email"]
+    firstname = request.get_json()["firstname"]
+    lastname = request.get_json()["lastname"]
+    message = request.get_json()["message"]
+    formattedMessage = "Another contact us form has been submitted!\nName: %s %s\nEmail: %s\nMessage: %s" % (firstname, lastname, user_email, message)
+    sendMessage = Message("Another submission!", body= formattedMessage,
+                      sender= os.getenv("MAIL_DEFAULT_SENDER"), 
                       recipients=["sophiamalashenko@gmail.com"])
-    mail.send(message)
-    return render_template("index.html", css_link = "/static/css/home.css")
+    mail.send(sendMessage)
+    return ""
 
 
 
