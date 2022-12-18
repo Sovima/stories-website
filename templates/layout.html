@@ -7,7 +7,11 @@
     <link rel="stylesheet" href={{css_link}}>
     <link id = "header-style" rel="stylesheet" href="/static/css/header.css">
 </head>
-<body id = "body" class="dark">
+{% if not session.mode or session.mode == "dark" %}
+<body id = "body" class = "dark">
+{% else %}
+<body id = "body" class>
+{% endif %}
     <header>
         <p id="logo">Logo</p>
         <nav class="nav-links">
