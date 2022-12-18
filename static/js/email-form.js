@@ -5,6 +5,7 @@ form.addEventListener("submit", function(event) {
     lastname = document.getElementById("lastname").value;
     email = document.getElementById("email").value;
     message = document.getElementById("message").value;
+    document.getElementById("contact-form").reset()
     console.log("This is the message: " + message)
     fetch("/submit-form", {
         method : "POST",
@@ -18,11 +19,3 @@ form.addEventListener("submit", function(event) {
     })
 
 })
-    // fetch("/change-mode", {
-    //     method : "POST",
-    //     headers: 
-    //     { 
-    //         'Content-Type': 'application/json'
-    //     }, 
-    //     body: JSON.stringify({ email: mode })
-    // })
