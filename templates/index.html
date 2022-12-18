@@ -22,7 +22,7 @@
 
 
 <div class="form">
-    <form class="contact-form" action="/" method="post">
+    <form class="contact-form" id="contact-form">
         <div class="firstname row">
             <input type="text" name="firstname" id="firstname" placeholder="First Name" autocomplete="on"><br>
         </div>
@@ -33,10 +33,10 @@
             <input type="email" name="email" id="email" placeholder="jane.doe@mail.com" autocomplete="on" required><br>
         </div>
         <div class="comments row">
-            <textarea name="message" id="message" cols="30" rows="10" required></textarea><br>
+            <textarea name="message" id="message" cols="30" rows="10" autocomplete="off" required></textarea><br>
         </div>
-        <button class="submit" id="submit" type="submit">Submit</button>
+        <button class="submit" type="submit">Submit</button>
     </form>
 </div>
-
+<script src="/static/js/email-form.js"></script>
 {% endblock %}
