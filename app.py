@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, session
 from flask_mail import Mail, Message
-from flask_sessions import Session
+from flask_session import Session
 import os
 
 app = Flask(__name__)
@@ -40,3 +40,12 @@ def submit_form():
                       recipients=["sophiamalashenko@gmail.com"])
     mail.send(message)
     return render_template("index.html", css_link = "/static/css/home.css")
+
+
+
+@app.route("/change-mode", methods = ["POST"]) 
+def func():
+    session["mode"] = request.get_json()["mode"]
+    print("!!!! This is the session" + session["mode"])
+    return ""
+
