@@ -23,6 +23,11 @@ def index():
     return render_template("index.html", css_link = "/static/css/home.css")
 
 
+@app.route("/login", methods = ["POST", "GET"])
+def login():
+    return render_template("login.html", css_link = "/static/css/home.css")
+
+
 @app.route("/stories")
 def stories():
     return render_template("stories.html", css_link="/static/css/story-cards.css")
