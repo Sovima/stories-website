@@ -27,6 +27,7 @@
 
 
 #light-dark-switch {
+    margin-right: 10px;
     text-align: left;
     height: 30px;
     padding:0;
@@ -105,6 +106,11 @@ a.navlinks {
     color:black;
 }
 
+.right {
+    display: flex;
+    align-items: center;
+}
+
 a.navlinks:after {
     content:"";
     position: absolute;
@@ -128,6 +134,20 @@ a.navlinks:hover:after {
 }
 
 
+.icon {
+    padding: 0 0 0 0;
+    margin:5px 0 0 10px;
+    font-size: 30px;
+    text-align: center;
+    color: var(--deep-grey);
+  }
+
+
+
+.icon:hover {
+    color: var(--lighter-grey);
+    transition: 0.3s;
+}
 
 
 
@@ -136,6 +156,10 @@ a.navlinks:hover:after {
 
 
 /* Dark mode */
+
+
+
+
 
 body.dark .dot {
     height: 19px;
@@ -184,6 +208,17 @@ body.dark header{
 
 body.dark a.navlinks {
     color:var(--light-yellow);
+}
+
+
+
+body.dark .icon {
+    color: var(--light-grey);
+}
+
+
+body.dark .icon:hover {
+    color: var(--lighter-grey);
 }
 
 
