@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>My first webpage</title>
     <link rel="stylesheet" href={{css_link}}>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link id = "header-style" rel="stylesheet" href="/static/css/header.css">
 </head>
 {% if not session.mode or session.mode == "dark" %}
@@ -23,6 +24,7 @@
         <div class="right">
             <button id="light-dark-switch"><span class="dot"></span></button>
             <a class="contact-us-link navbar" href="/#contact-section"><button class="contact-us">Contact us</button></a>
+            <a href="/login"><i class="fa fa-user icon"></i></a>
         </div>
     </header>
     {% block body %}{% endblock %}
