@@ -1,3 +1,5 @@
+import sqlite3
+import flask
 from flask import Flask, render_template, request, session
 from flask_mail import Mail, Message
 from flask_session import Session
@@ -26,6 +28,25 @@ def index():
 @app.route("/login", methods = ["POST", "GET"])
 def login():
     return render_template("login.html", css_link = "/static/css/home.css")
+
+
+@app.route("/signed-up", methods = ["POST", "GET"])
+def sign_up():
+    connection = sqlite3.connect("login.db")
+    cur = connection.cursor()
+    cur.execute("CREATE TABLE IF NOT EXISTS users (Email TEXT, Password TEXT);")
+    if flask.request.method == "POST" :
+        email = request.get_json()["email"]
+        password = request.get_json()["password"]
+        sql_to_check_dup = "SELECT COUNT(1) FROM users WHERE Email = ?;"
+        check_out = cur.execute(sql_to_check_dup, [email]).fetchone()[0]
+        if check_out == 0:
+            sql = "INSERT INTO users(Email, Password) VALUES(?, ?);"
+            cur.execute(sql, [email, password])
+            connection.commit()
+    connection.close()
+    return ""
+
 
 
 @app.route("/stories")
