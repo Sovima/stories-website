@@ -25,7 +25,6 @@
     margin-left:5px;
   }
 
-
 #light-dark-switch {
     margin-right: 10px;
     text-align: left;
@@ -150,13 +149,46 @@ a.navlinks:hover:after {
 }
 
 #welcome {
-    padding-left: 10px;
     font-size: 16px;
     line-height:30px;
     color: black;
 }
 
 
+div.dropdown {
+    display:inline-block;
+    margin-left: 10px;
+}
+
+div.dropdown-content {
+    display: block;
+    opacity:0;
+    z-index: 1;
+    transform: translateY(-2em);
+    position: absolute;
+    transition: 0.3s;
+}
+
+
+button.logout {
+    font-size: 16px;
+    padding: 10px 15px;
+    opacity: 0.8;
+    background-color: var(--light-yellow);
+    color: black;
+    border: none;
+}
+
+button.logout:hover {
+    opacity: 1;
+}
+
+div.dropdown:hover .dropdown-content{
+    display: block;
+    transform: translateY(-0.5em);
+    opacity:1;
+    transition: 0.3s;
+}
 
 
 
@@ -225,7 +257,7 @@ body.dark .icon {
 
 
 body.dark #welcome {
-    color: rgb(185, 185, 185);
+    color: var(--light-yellow);
 }
 
 
@@ -246,4 +278,42 @@ body.dark a.navlinks:after {
 
 body.dark #logo{
     color:var(--light-yellow);
+}
+
+
+
+
+body.dark div.dropdown {
+    display:inline-block;
+    margin-left: 10px;
+}
+
+body.dark div.dropdown-content {
+    display: block;
+    opacity:0;
+    z-index: 1;
+    transform: translateY(-2em);
+    position: absolute;
+    transition: 0.3s;
+}
+
+
+body.dark button.logout {
+    font-size: 16px;
+    padding: 10px 15px;
+    opacity: 0.8;
+    background-color: var(--light-grey);
+    color: var(--light-yellow);
+    border: none;
+}
+
+body.dark button.logout:hover {
+    opacity: 1;
+}
+
+body.dark div.dropdown:hover .dropdown-content{
+    display: block;
+    transform: translateY(-0.5em);
+    opacity:1;
+    transition: 0.3s;
 }
