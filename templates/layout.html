@@ -25,7 +25,12 @@
             <button id="light-dark-switch"><span class="dot"></span></button>
             <a class="contact-us-link navbar" href="/#contact-section"><button class="contact-us">Contact us</button></a>
             {% if session.user %}
-            <p id = "welcome"> Hi {{session.user}}! </p>
+            <div class="dropdown">
+                <p id = "welcome"> Hi {{session.user}}! </p>
+                <div class="dropdown-content">
+                    <button class="logout"> Log out </button>
+                </div>
+            </div>
             {% else %}
             <a href="/login"><i class="fa fa-user icon"></i></a>
             {% endif %}
