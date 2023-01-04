@@ -24,7 +24,11 @@
         <div class="right">
             <button id="light-dark-switch"><span class="dot"></span></button>
             <a class="contact-us-link navbar" href="/#contact-section"><button class="contact-us">Contact us</button></a>
+            {% if session.user %}
+            <p id = "welcome"> Hi {{session.user}}! </p>
+            {% else %}
             <a href="/login"><i class="fa fa-user icon"></i></a>
+            {% endif %}
         </div>
     </header>
     {% block body %}{% endblock %}
