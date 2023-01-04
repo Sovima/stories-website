@@ -281,39 +281,7 @@ body.dark #logo{
 }
 
 
-
-
-body.dark div.dropdown {
-    display:inline-block;
-    margin-left: 10px;
-}
-
-body.dark div.dropdown-content {
-    display: block;
-    opacity:0;
-    z-index: 1;
-    transform: translateY(-2em);
-    position: absolute;
-    transition: 0.3s;
-}
-
-
 body.dark button.logout {
-    font-size: 16px;
-    padding: 10px 15px;
-    opacity: 0.8;
     background-color: var(--light-grey);
     color: var(--light-yellow);
-    border: none;
-}
-
-body.dark button.logout:hover {
-    opacity: 1;
-}
-
-body.dark div.dropdown:hover .dropdown-content{
-    display: block;
-    transform: translateY(-0.5em);
-    opacity:1;
-    transition: 0.3s;
 }
