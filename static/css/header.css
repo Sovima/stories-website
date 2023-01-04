@@ -76,7 +76,7 @@ header {
     padding: 10px 5%;
     margin: 0;
     background-color: var(--base-yellow);
-    height:auto;
+    height:60px;
     border-bottom: 10px solid var(--light-yellow);
 }
 
@@ -149,6 +149,13 @@ a.navlinks:hover:after {
     transition: 0.3s;
 }
 
+#welcome {
+    padding-left: 10px;
+    font-size: 16px;
+    line-height:30px;
+    color: black;
+}
+
 
 
 
@@ -199,7 +206,7 @@ body.dark .contact-us {
 }
 
 
-body.dark header{
+body.dark header {
     background-color: black;
     border-bottom: 10px solid var(--base-yellow);
 }
@@ -217,6 +224,12 @@ body.dark .icon {
 }
 
 
+body.dark #welcome {
+    color: rgb(185, 185, 185);
+}
+
+
+
 body.dark .icon:hover {
     color: var(--lighter-grey);
 }
@@ -231,6 +244,6 @@ body.dark a.navlinks:after {
     background-color:var(--light-yellow);
 }
 
-body.dark  #logo{
+body.dark #logo{
     color:var(--light-yellow);
 }
