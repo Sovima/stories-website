@@ -28,7 +28,7 @@
             <div class="dropdown">
                 <p id = "welcome"> Hi {{session.user}}! </p>
                 <div class="dropdown-content">
-                    <button class="logout"> Log out </button>
+                    <a class="logout" href="/logout"> Log out </a>
                 </div>
             </div>
             {% else %}
@@ -38,6 +38,7 @@
     </header>
     {% block body %}{% endblock %}
     <script src="/static/js/dark-header.js"></script>
+    <script src="/static/js/logout.js"></script>
 
 </body>
 </html>
