@@ -1,6 +1,6 @@
 import sqlite3
 import flask
-from flask import Flask, render_template, request, session
+from flask import Flask, redirect, render_template, request, session
 from flask_mail import Mail, Message
 from flask_session import Session
 import os
@@ -20,6 +20,15 @@ app.config["SESSION_TYPE"] = "filesystem"
 
 Session(app)
 
+@app.after_request
+def after_request(response):
+    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+    response.headers["Expires"] = 0
+    response.headers["Pragma"] = "no-cache"
+    return response
+
+
+
 @app.route("/")
 def index():
     return render_template("index.html", css_link = "/static/css/home.css")
@@ -30,7 +39,15 @@ def login():
     return render_template("login.html", css_link = "/static/css/home.css")
 
 
-@app.route("/signed-up", methods = ["POST", "GET"])
+
+
+@app.route("/logout", methods = ["POST", "GET"])
+def logout():
+    session.pop("user", None)
+    return redirect(request.referrer)
+
+
+@app.route("/signed-up", methods = ["POST"])
 def sign_up():
     connection = sqlite3.connect("login.db")
     cur = connection.cursor()
@@ -44,6 +61,10 @@ def sign_up():
             sql = "INSERT INTO users(Email, Password) VALUES(?, ?);"
             cur.execute(sql, [email, password])
             connection.commit()
+            session["user"] = email
+            connection.close()
+            print("returning index page")
+            return ""
     connection.close()
     return ""
 
