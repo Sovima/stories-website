@@ -1,6 +1,6 @@
 import sqlite3
 import flask
-from flask import Flask, redirect, render_template, request, session
+from flask import Flask, redirect, render_template, request, session, jsonify
 from flask_mail import Mail, Message
 from flask_session import Session
 import os
@@ -36,12 +36,32 @@ def index():
 
 @app.route("/login", methods = ["POST", "GET"])
 def login():
-    return render_template("login.html", css_link = "/static/css/home.css")
+    if flask.request.method == "POST" :
+        connection = sqlite3.connect("login.db")
+        cur = connection.cursor()
+        cur.execute("CREATE TABLE IF NOT EXISTS users (Email TEXT, Password TEXT);")
+        response = None
+        email = request.get_json()["email"]
+        password = request.get_json()["password"]
+        sql_to_check_dup = "SELECT Password FROM users WHERE Email = ?;"
+        check_out = cur.execute(sql_to_check_dup, [email]).fetchall()
+        if len(check_out) and check_out[0][0] == password:
+            session["user"] = email
+            response = jsonify({"status": "OK"})
+        elif len(check_out): 
+            response = jsonify({"status": "WRONG PASSWORD"})
+        else:
+            response = jsonify({"status": "NONEXISTENT USER"})
+        connection.close()
+        return response
+    else: 
+        return render_template("login.html", css_link="/static/css/home.css")
+    
 
 
 
 
-@app.route("/logout", methods = ["POST", "GET"])
+@app.route("/logout")
 def logout():
     session.pop("user", None)
     return redirect(request.referrer)
@@ -53,6 +73,7 @@ def sign_up():
     cur = connection.cursor()
     cur.execute("CREATE TABLE IF NOT EXISTS users (Email TEXT, Password TEXT);")
     if flask.request.method == "POST" :
+        response = None
         email = request.get_json()["email"]
         password = request.get_json()["password"]
         sql_to_check_dup = "SELECT COUNT(1) FROM users WHERE Email = ?;"
@@ -64,9 +85,11 @@ def sign_up():
             session["user"] = email
             connection.close()
             print("returning index page")
-            return ""
+            response = jsonify({"status": "OK"})
+        else: 
+            response = jsonify({"status": "FAILED"})
     connection.close()
-    return ""
+    return response
 
 
 
