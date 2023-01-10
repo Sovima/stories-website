@@ -87,7 +87,7 @@ def sign_up():
             print("returning index page")
             response = jsonify({"status": "OK"})
         else: 
-            response = jsonify({"status": "FAILED"})
+            response = jsonify({"status": "USER EXISTS"})
     connection.close()
     return response
 
