@@ -23,6 +23,7 @@
     vertical-align: top;
     display: inline-block;
     margin-left:5px;
+    transition: 0.3s;
   }
 
 #light-dark-switch {
@@ -116,14 +117,14 @@ a.navlinks:after {
     width:0%;
     left:0;
     border-radius: 2px;
-    background-color: var(--light-yellow);
-    height:5px;
+    background-color: black;
+    height:3px;
     bottom:0px;
 }
 
 
 a.navlinks:hover {
-    color:var(--light-yellow);
+    color:black;
     transition: 0;
 }
 
@@ -213,6 +214,7 @@ body.dark .dot {
     display: inline-block;
     margin-left: 5px;
     transform: translateX(28px);
+    transition: 0.3s;
   }
 
 
