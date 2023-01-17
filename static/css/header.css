@@ -117,14 +117,14 @@ a.navlinks:after {
     width:0%;
     left:0;
     border-radius: 2px;
-    background-color: black;
+    background-color: var(--light-yellow);
     height:3px;
     bottom:0px;
 }
 
 
 a.navlinks:hover {
-    color:black;
+    color:var(--light-yellow);
     transition: 0;
 }
 
@@ -179,6 +179,11 @@ a.logout {
     background-color: var(--light-yellow);
     color: black;
     border: none;
+}
+
+a.login {
+    font-size: 16px;
+    line-height:16px;
 }
 
 a.logout:hover {

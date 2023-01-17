@@ -143,3 +143,33 @@ h3 {
     }
     
 }
+
+
+body.dark {
+    background-color: #272727;
+}
+
+body.dark mark {
+    background-color: transparent;
+    color: var(--base-yellow)
+}
+
+body.dark h3 {
+    color:var(--light-yellow);
+}
+
+body.dark .story-cards {
+    background-color: #272727;
+}
+
+
+body.dark .story-card {
+    background-color: var(--light-grey);
+    box-shadow: 5px 5px #fff7d151;
+}
+
+body.dark .read-btn {
+    color: var(--base-yellow);
+    border-color: black;
+    background-color: var(--deep-grey);
+}
