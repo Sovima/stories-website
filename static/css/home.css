@@ -172,7 +172,7 @@ body.dark button.submit:hover {
 }
 
 
-body.dark input, body.dark textarea{
+body.dark input.contact-form, body.dark textarea.contact-form {
     color:var(--text-grey);
     background-color: var(--light-grey);
     border: 0px solid var(--transparent-yellow);

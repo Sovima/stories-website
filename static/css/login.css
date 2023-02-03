@@ -1,0 +1,59 @@
+
+/* Hide the login form by default */
+div.login-form {
+    display: none; 
+    z-index: 90;
+    position: fixed;
+}
+
+
+/* Hide the login form by default */
+div.showing-login {
+    padding-top:20vh;
+    display: block;
+    bottom: 0;
+    top: 0;
+    left:0;
+    width: 80vw;
+    background-color: rgba(90, 90, 90, 0.876);
+
+    padding-left: 30vw;
+}
+
+form.login-form {
+    width: 10vw;
+}
+
+input.login, input.signup {
+    width:40vw;
+}
+
+#h2-login, #h2-signup {
+    width: 40vw;
+    margin: 0;
+}
+
+#h2-login p, #h2-signup p {
+    text-align: center;
+}
+
+
+
+input.login, input.signup {
+    font-size: 16px;
+    margin-left: 0;
+    margin-right: 0;
+    background-color: var(--light-grey);
+    box-sizing: border-box;
+    border: none;
+    border-radius: 7px;
+    padding: 5px 10px 5px 5px;
+}
+  
+input.login, input.signup {
+      margin-bottom: 20px;
+}
+
+div.hide {
+    display:none;
+}

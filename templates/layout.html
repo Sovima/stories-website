@@ -41,30 +41,38 @@
 
     <div class="login-form" id="login-window">
         <div class="exit-login"><button onclick="removeLogin()">Exit</button></div>
-        <h2>Login Page</h2>
 
-        <form class="login-form" id="login-form" action="/login" method="post">
-            <div class="email">
-                <input class="login" type="email" name="email" id="login-email" placeholder="Email" autocomplete="on" required><br>
-            </div>
-            <div class="password">
-                <input class="login" type="password" name="password" id="login-password" placeholder="Password" autocomplete="off" required><br>
-            </div>
-            <input class="login" type="submit">
-        </form>
-    
-        <h2>Not a member?</h2>
-        <h3>Sign up!</h3>
-    
-        <form class="signup-form" id="signup-form">
-            <div class="email">
-                <input type="email" name="email" id="signup-email" placeholder="Email" autocomplete="on" required><br>
-            </div>
-            <div class="password">
-                <input type="password" name="password" id="signup-password" placeholder="Password" autocomplete="off" required><br>
-            </div>
-            <input type="submit">
-        </form>
+        <div class="login-form-full" id="login-form-full">
+            <h2 class="login" id = "h2-login"><p>Login</p></h2>
+
+            <form class="login-form" id="login-form" action="/login" method="post">
+                <div class="email">
+                    <input class="login" type="email" name="email" id="login-email" placeholder="Email" autocomplete="on" required><br>
+                </div>
+                <div class="password">
+                    <input class="login" type="password" name="password" id="login-password" placeholder="Password" autocomplete="off" required><br>
+                </div>
+                <input class="login" type="submit">
+            </form>
+        
+            <h2>Not a member?</h2>
+            <div class="switch-to-signup"><button onclick="switchToSignup()">Sign Up!</button></div>
+        </div>
+
+        <div class="signup-form-full hide" id="signup-form-full">
+            <h2 class="signup" id = "h2-signup"><p>Sign Up</p></h2>
+            <form class="signup-form" id="signup-form">
+                <div class="email">
+                    <input class="signup" type="email" name="email" id="signup-email" placeholder="Email" autocomplete="on" required><br>
+                </div>
+                <div class="password">
+                    <input class="signup" type="password" name="password" id="signup-password" placeholder="Password" autocomplete="off" required><br>
+                </div>
+                <input class="signup" type="submit">
+            </form>
+
+            <div class="switch-to-login"><button onclick="switchToLogin()">Log in!</button></div>
+        </div>
     </div>
 
     <script src="/static/js/dark-header.js"></script>
