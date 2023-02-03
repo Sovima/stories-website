@@ -70,7 +70,7 @@ form.contact-form{
 
 
 
-input, textarea{
+input.contact-form, textarea.contact-form {
   font-size: 16px;
   width:90vw;
   margin-left: 5vw;
@@ -80,11 +80,11 @@ input, textarea{
   padding: 5px 10px;
 }
 
-textarea {
+textarea.contact-form {
     vertical-align: top;
 }
 
-input {
+input.contact-form {
     margin-bottom: 20px;
 }
 
