@@ -6,6 +6,7 @@
     <title>My first webpage</title>
     <link rel="stylesheet" href={{css_link}}>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/css/login.css">
     <link id = "header-style" rel="stylesheet" href="/static/css/header.css">
 </head>
 {% if not session.mode or session.mode == "dark" %}
@@ -37,8 +38,37 @@
         </div>
     </header>
     {% block body %}{% endblock %}
+
+    <div class="login-form">
+        <h2>Login Page</h2>
+        <form class="login-form" id="login-form" action="/login" method="post">
+            <div class="email">
+                <input type="email" name="email" id="login-email" placeholder="Email" autocomplete="on" required><br>
+            </div>
+            <div class="password">
+                <input type="password" name="password" id="login-password" placeholder="Password" autocomplete="off" required><br>
+            </div>
+            <input type="submit">
+        </form>
+    
+        <h2>Not a member?</h2>
+        <h3>Sign up!</h3>
+    
+        <form class="signup-form" id="signup-form">
+            <div class="email">
+                <input type="email" name="email" id="signup-email" placeholder="Email" autocomplete="on" required><br>
+            </div>
+            <div class="password">
+                <input type="password" name="password" id="signup-password" placeholder="Password" autocomplete="off" required><br>
+            </div>
+            <input type="submit">
+        </form>
+    </div>
+
     <script src="/static/js/dark-header.js"></script>
     <script src="/static/js/logout.js"></script>
+    <script src="/static/js/signup-form.js"></script>
+    <script src="/static/js/login.js"></script>
 
 </body>
 </html>
