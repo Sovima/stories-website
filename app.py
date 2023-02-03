@@ -119,7 +119,7 @@ def submit_form():
 
 
 @app.route("/change-mode", methods = ["POST"]) 
-def func():
+def change_mode():
     session["mode"] = request.get_json()["mode"]
     print("!!!! This is the session" + session["mode"])
     return ""
