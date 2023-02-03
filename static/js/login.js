@@ -20,3 +20,16 @@ form.addEventListener("submit", async function(event) {
     }
 
 })
+
+
+
+function showLogin() {
+    loginButton = document.getElementById("login-window")
+    loginButton.classList.add("showing-login")
+}
+
+
+function removeLogin() {
+    loginButton = document.getElementById("login-window")
+    loginButton.classList.remove("showing-login")
+}
