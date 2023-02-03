@@ -33,14 +33,16 @@
                 </div>
             </div>
             {% else %}
-            <a class="login" href="/login"><i class="fa fa-user icon"></i></a>
+            <button class="login" onclick="showLogin()"><i class="fa fa-user icon"></i></button>
             {% endif %}
         </div>
     </header>
     {% block body %}{% endblock %}
 
-    <div class="login-form">
+    <div class="login-form" id="login-window">
+        <div class="exit-login"><button onclick="removeLogin()">Exit</button></div>
         <h2>Login Page</h2>
+
         <form class="login-form" id="login-form" action="/login" method="post">
             <div class="email">
                 <input type="email" name="email" id="login-email" placeholder="Email" autocomplete="on" required><br>
