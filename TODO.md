@@ -12,4 +12,4 @@ A few things to do:
 [] Add the french text - https://teteamodeler.ouest-france.fr/images/conte/pdf/le-chat-botte.pdf
 [X] Add link underline hover effect - https://www.youtube.com/watch?v=aswRKAjjWuE&loop=0
 [] Add encoding to the passwords (don't store the passwords as is)
-[] Make sure the login 
+[] Test out various dark mode palletes
