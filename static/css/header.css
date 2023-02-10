@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap');
 :root {
+    /* Dark mode Colors */
     --base-yellow: #FFD54F;
     --transparent-yellow: #ffd64f5f;
     --light-yellow: #fff7d1;
@@ -237,7 +238,8 @@ body.dark #light-dark-switch {
 
 
 body.dark .contact-us {
-    background: var(--deep-grey);
+    /* background: var(--deep-grey); */
+    background: rgb(43, 43, 43);
     margin: 5px;
     padding: 7px 12px;
     font-family: 'Montserrat', sans-serif;
@@ -250,7 +252,8 @@ body.dark .contact-us {
 
 body.dark header {
     background-color: black;
-    border-bottom: 10px solid var(--base-yellow);
+    /* border-bottom: 10px solid var(--base-yellow); */
+    border-bottom: 1px solid #eb5987;
 }
 
 
