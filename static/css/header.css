@@ -204,6 +204,53 @@ div.dropdown:hover .dropdown-content{
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* Dark mode */
 
 
@@ -213,7 +260,9 @@ div.dropdown:hover .dropdown-content{
 body.dark .dot {
     height: 19px;
     width: 19px;
-    background-color: var(--base-yellow);
+    /* background-color: var(--base-yellow); */
+    /* background-color: #eb5987; */
+    background-color:#53e2ff;
     border-radius: 50%;
     border-color:black;
     border-width: 0.5px;
@@ -244,7 +293,8 @@ body.dark .contact-us {
     padding: 7px 12px;
     font-family: 'Montserrat', sans-serif;
     border-radius: 20px;
-    color:var(--base-yellow);
+    /* color:var(--base-yellow); */
+    color: #fbb13c;
     border: none;
     font-size: 16px;
 }
@@ -253,13 +303,14 @@ body.dark .contact-us {
 body.dark header {
     background-color: black;
     /* border-bottom: 10px solid var(--base-yellow); */
-    border-bottom: 1px solid #eb5987;
+    border-bottom: 10px solid #53e2ff46;
 }
 
 
 
 body.dark a.navlinks {
-    color:var(--light-yellow);
+    /* color:var(--light-yellow); */
+    color: #b4f3ff;
 }
 
 
@@ -270,7 +321,8 @@ body.dark .icon {
 
 
 body.dark #welcome {
-    color: var(--light-yellow);
+    /* color: var(--light-yellow); */
+    color: #b4f3ff;
 }
 
 
@@ -286,11 +338,13 @@ body.dark .contact-us:hover{
 }
 
 body.dark a.navlinks:after {
-    background-color:var(--light-yellow);
+    /* background-color:var(--light-yellow); */
+    background-color: #b4f3ff;
 }
 
 body.dark #logo{
-    color:var(--light-yellow);
+    /* color:var(--light-yellow); */
+    color: #b4f3ff;
 }
 
 

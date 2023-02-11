@@ -151,10 +151,10 @@ body.dark {
 
 
 body.dark mark {
-    background-color: #121212;
+    background-color: #b4f3ff55;
     /* background-color: #eb044e; */
     /* color: var(--base-yellow) */
-    color: white;
+    color: #d2f8ff;
 }
 
 body.dark h3 {
@@ -168,16 +168,16 @@ body.dark .story-cards {
 
 
 body.dark .story-card {
-    border-radius: 0;
+    border-radius: 7;
     /* background-color: var(--light-grey); */
     /* box-shadow: 5px 5px #fff7d151; */
     background-color: #1d1d1d;
-    box-shadow: 5px 5px #eb044d88;
+    box-shadow: 5px 5px #b4f3ff60;
 }
 
 body.dark .story-card:hover {
     transform: translateY(-0.5%);
-    box-shadow: 5px 5px #eb044e;
+    box-shadow: 5px 5px #b4f3ffc3;
 }
 
 body.dark .read-btn {
