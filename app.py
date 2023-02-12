@@ -124,3 +124,7 @@ def change_mode():
     print("!!!! This is the session" + session["mode"])
     return ""
 
+
+
+
+
