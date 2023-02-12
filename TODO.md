@@ -13,3 +13,5 @@ A few things to do:
 [X] Add link underline hover effect - https://www.youtube.com/watch?v=aswRKAjjWuE&loop=0
 [] Add encoding to the passwords (don't store the passwords as is)
 [] Test out various dark mode palletes
+[] Create a feature of adding new stories. The user will add 
+[] Put the story into a database. Each story is a list of the highlight to the highlight number. 
