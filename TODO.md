@@ -16,7 +16,7 @@ A few things to do:
 - [] Create a feature of adding new stories. The user will add 
 - [] Put the story into a database. Each story is a list of the highlight to the highlight number. 
 
-######Friday March 24th:
+###### Friday March 24th:
 
 First,
 - [x] Hash the passwords
