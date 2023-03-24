@@ -15,3 +15,11 @@ A few things to do:
 [] Test out various dark mode palletes
 [] Create a feature of adding new stories. The user will add 
 [] Put the story into a database. Each story is a list of the highlight to the highlight number. 
+
+######Friday March 24th:
+
+General idea for the database: 
+- The text and the highlights are stored in a MongoDB database
+- The text is just the full text
+- The highlights is a list of highlight objects that are:
+    - a list of start and end tuples that point to the start and end of the highlight
