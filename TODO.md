@@ -1,3 +1,8 @@
+Some important links:
+- Conversation with ChatGpt - https://chat.openai.com/chat/e9ddb476-30f1-4999-9c34-ffabd24d7323
+
+
+
 A few things to do:
 - [x] On the home page, image on the left, text on the right, and an unaligned yellow box in the background
 - [x] Add a dark mode button
@@ -28,5 +33,11 @@ General idea for the database:
     - a list of start and end tuples that point to the start and end of the highlight
 
 Hence, today I should 
-- [ ] Create an entry in the database for 
-- [ ]
+- [ ] Create a page that takes in two texts, english and french
+- [x] Install pymongo and import the MongoClient
+
+
+
+Some other day:
+- [ ] Add an entry to the databse (no routes)
+- [ ] create a frontend to allow for addition of new stories
