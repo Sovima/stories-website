@@ -4,6 +4,8 @@ from flask import Flask, redirect, render_template, request, session, jsonify
 from flask_mail import Mail, Message
 from flask_session import Session
 import os
+import hashlib
+from pymongo import MongoClient
 
 app = Flask(__name__)
 # Configure mail settings
@@ -34,18 +36,25 @@ def index():
     return render_template("index.html", css_link = "/static/css/home.css")
 
 
-@app.route("/login", methods = ["POST", "GET"])
+@app.route("/login", methods = ["POST"])
 def login():
     if flask.request.method == "POST" :
+        # Here we are adding a new user
         connection = sqlite3.connect("login.db")
         cur = connection.cursor()
         cur.execute("CREATE TABLE IF NOT EXISTS users (Email TEXT, Password TEXT);")
         response = None
         email = request.get_json()["email"]
         password = request.get_json()["password"]
+
+        # Encode the password and the login
+        encrypted_password = hashlib.sha256(password.encode("utf-8")).hexdigest()
+        encrypted_email = hashlib.sha256(email.encode("utf-8")).hexdigest()
+
+
         sql_to_check_dup = "SELECT Password FROM users WHERE Email = ?;"
-        check_out = cur.execute(sql_to_check_dup, [email]).fetchall()
-        if len(check_out) and check_out[0][0] == password:
+        check_out = cur.execute(sql_to_check_dup, [encrypted_email]).fetchall()
+        if len(check_out) and check_out[0][0] == encrypted_password:
             session["user"] = email
             response = jsonify({"status": "OK"})
         elif len(check_out): 
@@ -54,11 +63,6 @@ def login():
             response = jsonify({"status": "NONEXISTENT USER"})
         connection.close()
         return response
-    else: 
-        return render_template("login.html", css_link="/static/css/home.css")
-    
-
-
 
 
 @app.route("/logout")
@@ -79,8 +83,10 @@ def sign_up():
         sql_to_check_dup = "SELECT COUNT(1) FROM users WHERE Email = ?;"
         check_out = cur.execute(sql_to_check_dup, [email]).fetchone()[0]
         if check_out == 0:
+            encrypted_password = hashlib.sha256(password.encode("utf-8")).hexdigest()
+            encrypted_email = hashlib.sha256(email.encode("utf-8")).hexdigest()
             sql = "INSERT INTO users(Email, Password) VALUES(?, ?);"
-            cur.execute(sql, [email, password])
+            cur.execute(sql, [encrypted_email, encrypted_password])
             connection.commit()
             session["user"] = email
             connection.close()
