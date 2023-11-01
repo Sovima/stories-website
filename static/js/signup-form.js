@@ -19,7 +19,10 @@ form.addEventListener("submit", async function(event) {
             'Content-Type': 'application/json'
         }, 
         body: JSON.stringify({ email: email, 
-                            password: password})
+                            password: password,
+                            fname: firstName,
+                            lname: lastName,
+                            userType: userType})
     })
     const status = await response.json()
     console.log(userType);
