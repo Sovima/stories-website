@@ -41,3 +41,13 @@ Hence, today I should
 Some other day:
 - [ ] Add an entry to the databse (no routes)
 - [ ] create a frontend to allow for addition of new stories
+
+
+My CS348 project will be based on this website. Hence, the website might need somerestructuring. A few notes on the changes:
+1. The users will have the option to be a teacher or a student
+2. Teachers will have the option to assign a story to a class
+3. If a user marked themselves as a student or a teacher they will have options to enroll in more classes after logging in (should be a separate window)
+4. If a user marked themselves as a teacher, a class ID will be generated which can be later shared with students
+5. When a student is enrolling, they must select a class that exists
+6. When registering, a teachers and students must enroll in at least one class
+7. Students will have the option to update the status of their Assignment
