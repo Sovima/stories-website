@@ -5,7 +5,9 @@ from flask_mail import Mail, Message
 from flask_session import Session
 import os
 import hashlib
-from pymongo import MongoClient
+from pymongo import MongoClient # will be using mysql connector instead
+import random
+
 
 app = Flask(__name__)
 # Configure mail settings
@@ -80,6 +82,12 @@ def sign_up():
         response = None
         email = request.get_json()["email"]
         password = request.get_json()["password"]
+        userType = request.get_json()["userType"]
+        if userType == "Teacher":
+            # This class ID will be later 
+            # put in a database
+            classIDNew = random.randint(0,9)
+
         sql_to_check_dup = "SELECT COUNT(1) FROM users WHERE Email = ?;"
         check_out = cur.execute(sql_to_check_dup, [email]).fetchone()[0]
         if check_out == 0:
