@@ -27,12 +27,12 @@ CREATE TABLE STORY(storyID VARCHAR(255),
                    storyName VARCHAR(255),
                    textEnglish TEXT,
                    textFrench TEXT,
-                   CHECK (fname LIKE '%[^a-zA-Z,.]%'),
+                   CHECK (author LIKE '%[^a-zA-Z,.]%'),
                    PRIMARY KEY (storyID));
 
 CREATE TABLE CLASS_TEACHER(classID CHAR(16),
                            teacherID VARCHAR(255),
-                           CHECK (fname LIKE '%[0-9]%'),
+                           CHECK (classID LIKE '%[0-9]%'),
                            PRIMARY KEY (classID),
                            FOREIGN KEY (teacherID) REFERENCES TEACHER(teacherID));
 
