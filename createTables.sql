@@ -45,12 +45,12 @@ CREATE TABLE USER(email VARCHAR(255) NOT NULL,
                   CHECK (userType in ('Teacher', 'Student', 'Other')),
                   PRIMARY KEY (email));
 
-CREATE TABLE TEACHER(teacherID VARCHAR(255) NOT NULL,
+CREATE TABLE TEACHER(teacherID INT NOT NULL,
                      email VARCHAR(255) NOT NULL,
                      PRIMARY KEY (teacherID),
                      FOREIGN KEY (email) REFERENCES USER(email));
 
-CREATE TABLE STUDENT(studentID VARCHAR(255) NOT NULL,
+CREATE TABLE STUDENT(studentID INT NOT NULL,
                      email VARCHAR(255) NOT NULL,
                      PRIMARY KEY (studentID),
                      FOREIGN KEY (email) REFERENCES USER(email));
@@ -64,7 +64,7 @@ CREATE TABLE STORY(storyID VARCHAR(255) NOT NULL,
                    PRIMARY KEY (storyID));
 
 CREATE TABLE CLASS_TEACHER(classID CHAR(16) NOT NULL,
-                           teacherID VARCHAR(255) NOT NULL,
+                           teacherID INT NOT NULL,
                            CONSTRAINT classIDCheck CHECK (classID REGEXP '[0-9]+'),
                            PRIMARY KEY (classID),
                            FOREIGN KEY (teacherID) REFERENCES TEACHER(teacherID));
@@ -79,12 +79,12 @@ CREATE TABLE ASSIGNMENT(assignmentNum TINYINT NOT NULL,
                         FOREIGN KEY (storyID) REFERENCES STORY(storyID));
 
 CREATE TABLE CLASSES(classID CHAR(16) NOT NULL,
-                     studentID VARCHAR(255) NOT NULL,
+                     studentID INT NOT NULL,
                      PRIMARY KEY (classID, studentID),
                      FOREIGN KEY (classID) REFERENCES CLASS_TEACHER(classID),
                      FOREIGN KEY (studentID) REFERENCES STUDENT(studentID));
 
-CREATE TABLE ASSIGNMENT_STATUS(studentID VARCHAR(255) NOT NULL, 
+CREATE TABLE ASSIGNMENT_STATUS(studentID INT NOT NULL, 
                                assignmentNum TINYINT NOT NULL,
                                classID CHAR(16) NOT NULL,
                                completionStatus VARCHAR(255) NOT NULL,
@@ -100,6 +100,10 @@ CREATE TABLE ASSIGNMENT_STATUS(studentID VARCHAR(255) NOT NULL,
 /*
 Creating triggers
 */
+
+/*
+Trigger for populating ASSIGNMENT_STATUS table
+*/
 DELIMITER //
 
 CREATE TRIGGER new_assignment
@@ -113,6 +117,50 @@ BEGIN
 END;
 //
 DELIMITER ;
+
+/*
+Trigger for populating STUDENT table
+*/
+
+DELIMITER //
+
+CREATE TRIGGER new_student
+AFTER INSERT ON USER 
+FOR EACH ROW
+BEGIN
+    DECLARE student_id INT;
+    IF NEW.userType = 'Student' THEN
+        SET student_id = (SELECT IFNULL(MAX(studentID), 0) + 1 FROM STUDENT);
+        INSERT INTO STUDENT  VALUES (student_id, NEW.email);
+    END IF;
+END;
+//
+DELIMITER ;
+
+
+/*
+Trigger for populating TEACHER table
+*/
+
+DELIMITER //
+
+CREATE TRIGGER new_teacher
+AFTER INSERT ON USER 
+FOR EACH ROW
+BEGIN
+    DECLARE teacher_id INT;
+    IF NEW.userType = 'Teacher' THEN
+        SET teacher_id = (SELECT IFNULL(MAX(teacherID), 0) + 1 FROM TEACHER);
+        INSERT INTO TEACHER  VALUES (teacher_id, NEW.email);
+    END IF;
+END;
+//
+DELIMITER ;
+
+
+/*
+Trigger for populating ASSIGNMENT_STATUS table for new student
+*/
 
 
 
@@ -147,28 +195,6 @@ INSERT INTO USER (email, password, userType) VALUES ('user9@email.test', '599447
 INSERT INTO USER VALUES ('user10@email.test', 'Bart', 'Simpson', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Student');
 INSERT INTO USER VALUES ('user11@email.test', 'Best', 'User', '472bbe83616e93d3c09a79103ae47d8f71e3d35a966d6e8b22f743218d04171d', 'Other');
 INSERT INTO USER (email, password, userType) VALUES ('user12@email.test', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', 'Other');
-
-/*
-Populate teacher table
-*/
-
-INSERT INTO TEACHER VALUES ('1', 'user1@email.test');
-INSERT INTO TEACHER VALUES ('2', 'user2@email.test');
-INSERT INTO TEACHER VALUES ('3', 'user3@email.test');
-INSERT INTO TEACHER VALUES ('4', 'user4@email.test');
-INSERT INTO TEACHER VALUES ('5', 'user5@email.test');
-
-
-/*
-Populate student table
-*/
-
-INSERT INTO STUDENT VALUES ('1', 'user6@email.test');
-INSERT INTO STUDENT VALUES ('2', 'user7@email.test');
-INSERT INTO STUDENT VALUES ('3', 'user8@email.test');
-INSERT INTO STUDENT VALUES ('4', 'user9@email.test');
-INSERT INTO STUDENT VALUES ('5', 'user12@email.test');
-
 
 /*
 Populate story table
@@ -209,14 +235,14 @@ INSERT INTO CLASS_TEACHER VALUES ('0000000000000006', '3');
 Populate CLASSES
 */
 
-INSERT INTO CLASSES VALUES('0000000000000005', '1');
-INSERT INTO CLASSES VALUES('0000000000000004', '2');
-INSERT INTO CLASSES VALUES('0000000000000001', '5');
-INSERT INTO CLASSES VALUES('0000000000000002', '1');
-INSERT INTO CLASSES VALUES('0000000000000003', '4');
-INSERT INTO CLASSES VALUES('0000000000000006', '3');
-INSERT INTO CLASSES VALUES('0000000000000004', '5');
-INSERT INTO CLASSES VALUES('0000000000000001', '4');
+INSERT INTO CLASSES VALUES('0000000000000005', 1);
+INSERT INTO CLASSES VALUES('0000000000000004', 2);
+INSERT INTO CLASSES VALUES('0000000000000001', 5);
+INSERT INTO CLASSES VALUES('0000000000000002', 1);
+INSERT INTO CLASSES VALUES('0000000000000003', 4);
+INSERT INTO CLASSES VALUES('0000000000000006', 3);
+INSERT INTO CLASSES VALUES('0000000000000004', 5);
+INSERT INTO CLASSES VALUES('0000000000000001', 4);
 
 
 
