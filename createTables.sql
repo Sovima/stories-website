@@ -94,7 +94,8 @@ CREATE TABLE ASSIGNMENT_STATUS(studentID INT NOT NULL,
                                PRIMARY KEY (studentID, assignmentNum, classID),
                                FOREIGN KEY (assignmentNum, classID) REFERENCES
                                             ASSIGNMENT(assignmentNum, classID),
-                               FOREIGN KEY (studentID) REFERENCES STUDENT(studentID));
+                               FOREIGN KEY (studentID, classID) 
+                                         REFERENCES CLASSES(studentID, classID));
 
 
 /*
@@ -175,6 +176,67 @@ BEGIN
 END;
 //
 DELIMITER ;
+
+
+/*
+Trigger for removing assignment_status if student is removed from class
+*/
+
+DELIMITER //
+CREATE TRIGGER remove_assignment
+BEFORE DELETE ON ASSIGNMENT
+FOR EACH ROW
+BEGIN
+    DELETE FROM ASSIGNMENT_STATUS
+    WHERE assignmentNum = OLD.assignmentNum and classID = OLD.classID;
+END;
+//
+DELIMITER ;
+
+/*
+Trigger for removing assignment_status if assignment is removed
+*/
+DELIMITER //
+CREATE TRIGGER remove_student_from_class
+BEFORE DELETE ON CLASSES
+FOR EACH ROW
+BEGIN
+    DELETE FROM ASSIGNMENT_STATUS
+    WHERE (classID = OLD.classID AND studentID = OLD.studentID);
+END;
+//
+DELIMITER ;
+
+/*
+Trigger for removing assignment if a story is removed
+*/
+DELIMITER //
+CREATE TRIGGER remove_story
+BEFORE DELETE ON STORY
+FOR EACH ROW
+BEGIN
+    DELETE FROM ASSIGNMENT
+    WHERE (storyID = OLD.storyID);
+END;
+//
+DELIMITER ;
+
+/*
+Trigger for removing class and assignment if class_teacher tuple is deleted
+*/
+DELIMITER //
+CREATE TRIGGER remove_class
+BEFORE DELETE ON CLASS_TEACHER
+FOR EACH ROW
+BEGIN
+    DELETE FROM CLASSES
+    WHERE classID = OLD.classID;
+    DELETE FROM ASSIGNMENT
+    WHERE classID = OLD.classID;
+END;
+//
+DELIMITER ;
+
 
 /*
 Altering tables
@@ -288,7 +350,4 @@ FROM CLASSES
 WHERE classID = '0000000000000001';
 
 
-
-
-
-
+DELETE FROM STORY WHERE storyID ='1';
