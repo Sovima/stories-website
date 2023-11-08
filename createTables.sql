@@ -159,10 +159,22 @@ DELIMITER ;
 
 
 /*
-Trigger for populating ASSIGNMENT_STATUS table for new student
+Trigger for populating ASSIGNMENT_STATUS table for new student in class
 */
 
+DELIMITER //
 
+CREATE TRIGGER new_student_assignment
+AFTER INSERT ON CLASSES
+FOR EACH ROW
+BEGIN
+    INSERT INTO ASSIGNMENT_STATUS(studentID, assignmentNum, classID, completionStatus)
+    SELECT NEW.studentID, assignmentNum, classID, 'Not Started'
+    FROM ASSIGNMENT
+    WHERE classID = NEW.classID;
+END;
+//
+DELIMITER ;
 
 /*
 Altering tables
@@ -258,7 +270,9 @@ INSERT INTO ASSIGNMENT(assignmentNum, classID, storyID)
                        VALUES(1, '0000000000000002', '4');
 INSERT INTO ASSIGNMENT VALUES(3, '0000000000000006', '2', '2008-11-11', '14:56:59');
 INSERT INTO ASSIGNMENT VALUES(2, '0000000000000005', '5','2008-11-11', '14:56:59');
+INSERT INTO ASSIGNMENT VALUES(1, '0000000000000001', '5','2008-11-11', '14:56:59');
 
+INSERT INTO CLASSES VALUES('0000000000000001', 2);
 
 /*
 Creating views tables
