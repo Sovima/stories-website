@@ -45,7 +45,7 @@ def login():
         # Here we are adding a new user
         mydb = mysql.connector.connect(host = "localhost",
                                        user = "root",
-                                       password = "353^ps%2",
+                                       password = os.getenv("MYSQL_PASS"),
                                        database="stories")
         print(mydb)
         mycursor = mydb.cursor()
