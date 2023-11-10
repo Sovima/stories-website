@@ -1,12 +1,9 @@
-import sqlite3
 import flask
 from flask import Flask, redirect, render_template, request, session, jsonify
 from flask_mail import Mail, Message
 from flask_session import Session
 import os
 import hashlib
-from pymongo import MongoClient # will be using mysql connector instead
-import random
 import mysql.connector
 
 
@@ -78,34 +75,27 @@ def logout():
 
 @app.route("/signed-up", methods = ["POST"])
 def sign_up():
-    connection = sqlite3.connect("login.db")
-    cur = connection.cursor()
-    cur.execute("CREATE TABLE IF NOT EXISTS users (Email TEXT, Password TEXT);")
+    mydb = mysql.connector.connect(host = "localhost",
+                                    user = "root",
+                                    password = os.getenv("MYSQL_PASS"),
+                                    database="stories")
+    cur = mydb.cursor()
     if flask.request.method == "POST" :
         response = None
         email = request.get_json()["email"]
         password = request.get_json()["password"]
+        password = hashlib.sha256(password.encode("utf-8")).hexdigest()
         userType = request.get_json()["userType"]
-        if userType == "Teacher":
-            # This class ID will be later 
-            # put in a database
-            classIDNew = random.randint(0,999999)
-
-        sql_to_check_dup = "SELECT COUNT(1) FROM users WHERE Email = ?;"
-        check_out = cur.execute(sql_to_check_dup, [email]).fetchone()[0]
-        if check_out == 0:
-            encrypted_password = hashlib.sha256(password.encode("utf-8")).hexdigest()
-            encrypted_email = hashlib.sha256(email.encode("utf-8")).hexdigest()
-            sql = "INSERT INTO users(Email, Password) VALUES(?, ?);"
-            cur.execute(sql, [encrypted_email, encrypted_password])
-            connection.commit()
+        try:
+            sql = "INSERT INTO USER(email, password, userType) VALUES(%s, %s, %s);"
+            cur.execute(sql, [email, password, userType])
+            mydb.commit()
             session["user"] = email
-            connection.close()
             print("returning index page")
             response = jsonify({"status": "OK"})
-        else: 
+        except (mysql.connector.Error, mysql.connector.Warning):
             response = jsonify({"status": "USER EXISTS"})
-    connection.close()
+    mydb.close()
     return response
 
 
