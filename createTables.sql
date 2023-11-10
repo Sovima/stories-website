@@ -106,7 +106,6 @@ Creating triggers
 Trigger for populating ASSIGNMENT_STATUS table
 */
 DELIMITER //
-
 CREATE TRIGGER new_assignment
 AFTER INSERT ON ASSIGNMENT 
 FOR EACH ROW
@@ -124,7 +123,6 @@ Trigger for populating STUDENT table
 */
 
 DELIMITER //
-
 CREATE TRIGGER new_student
 AFTER INSERT ON USER 
 FOR EACH ROW
@@ -144,7 +142,6 @@ Trigger for populating TEACHER table
 */
 
 DELIMITER //
-
 CREATE TRIGGER new_teacher
 AFTER INSERT ON USER 
 FOR EACH ROW
@@ -239,6 +236,56 @@ DELIMITER ;
 
 
 /*
+Trigger for removing teacher if teacher is deleted
+*/
+DELIMITER //
+CREATE TRIGGER remove_teacher
+BEFORE DELETE ON TEACHER
+FOR EACH ROW
+BEGIN
+    DELETE FROM CLASS_TEACHER
+    WHERE teacherID = OLD.teacherID;
+END;
+//
+DELIMITER ;
+
+/*
+Trigger for removing student from classes if student is removed
+*/
+DELIMITER //
+CREATE TRIGGER remove_student
+BEFORE DELETE ON STUDENT
+FOR EACH ROW
+BEGIN
+    DELETE FROM CLASSES
+    WHERE studentID = OLD.studentID;
+END;
+//
+DELIMITER ;
+
+
+/*
+Trigger for removing student or teacher if user is removed
+*/
+DELIMITER //
+CREATE TRIGGER remove_user
+BEFORE DELETE ON USER
+FOR EACH ROW
+BEGIN
+    IF OLD.userType = 'Teacher' THEN
+        DELETE FROM TEACHER
+        WHERE email = OLD.email;
+    END IF;
+    IF OLD.userType = 'Student' THEN
+        DELETE FROM STUDENT
+        WHERE email = OLD.email;
+    END IF;
+END;
+//
+DELIMITER ;
+
+
+/*
 Altering tables
 */
 
@@ -246,8 +293,6 @@ ALTER TABLE CLASS_TEACHER
       DROP CONSTRAINT classIDCheck;
 ALTER TABLE CLASS_TEACHER 
       ADD CONSTRAINT classIDCheck CHECK (classID REGEXP '[0-9A-Z]+');
-
-
 
 
 /*
@@ -327,7 +372,7 @@ Populate ASSIGNMENT
 INSERT INTO ASSIGNMENT VALUES(1, '0000000000000006', '5', '2019-02-12', '23:59:00');
 INSERT INTO ASSIGNMENT(assignmentNum, classID, storyID) 
                        VALUES(1, '0000000000000005', '3');
-INSERT INTO ASSIGNMENT VALUES(2, '0000000000000006', '1', '2023-10-09', '23:59:59');
+INSERT INTO ASSIGNMENT VALUES(2, '0000000000000006', '2', '2023-10-09', '23:59:59');
 INSERT INTO ASSIGNMENT(assignmentNum, classID, storyID) 
                        VALUES(1, '0000000000000002', '4');
 INSERT INTO ASSIGNMENT VALUES(3, '0000000000000006', '2', '2008-11-11', '14:56:59');
@@ -350,4 +395,25 @@ FROM CLASSES
 WHERE classID = '0000000000000001';
 
 
-DELETE FROM STORY WHERE storyID ='1';
+/*
+Data Retrieval
+*/
+
+
+SELECT * FROM USER;
+SELECT * FROM ASSIGNMENT_STATUS WHERE assignmentNum = 2;
+SELECT email, userType FROM USER;
+SELECT MAX(studentID) FROM STUDENT;
+
+
+SELECT CLASSES.classID, CLASS_TEACHER.teacherID, CLASSES.studentID 
+       FROM CLASS_TEACHER
+       INNER JOIN CLASSES ON CLASS_TEACHER.classID=CLASSES.classID;
+
+SELECT STORY.storyID, ASSIGNMENT.assignmentNum, STORY.author  
+       FROM ASSIGNMENT 
+       RIGHT OUTER JOIN STORY ON STORY.storyID=ASSIGNMENT.storyID;
+
+SELECT STORY.storyID, ASSIGNMENT.assignmentNum, STORY.author  
+       FROM ASSIGNMENT 
+       INNER JOIN STORY ON STORY.storyID=ASSIGNMENT.storyID;
