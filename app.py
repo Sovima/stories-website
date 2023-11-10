@@ -7,6 +7,7 @@ import os
 import hashlib
 from pymongo import MongoClient # will be using mysql connector instead
 import random
+import mysql.connector
 
 
 app = Flask(__name__)
@@ -42,28 +43,30 @@ def index():
 def login():
     if flask.request.method == "POST" :
         # Here we are adding a new user
-        connection = sqlite3.connect("login.db")
-        cur = connection.cursor()
-        cur.execute("CREATE TABLE IF NOT EXISTS users (Email TEXT, Password TEXT);")
+        mydb = mysql.connector.connect(host = "localhost",
+                                       user = "root",
+                                       password = "353^ps%2",
+                                       database="stories")
+        print(mydb)
+        mycursor = mydb.cursor()
         response = None
         email = request.get_json()["email"]
         password = request.get_json()["password"]
 
         # Encode the password and the login
         encrypted_password = hashlib.sha256(password.encode("utf-8")).hexdigest()
-        encrypted_email = hashlib.sha256(email.encode("utf-8")).hexdigest()
 
-
-        sql_to_check_dup = "SELECT Password FROM users WHERE Email = ?;"
-        check_out = cur.execute(sql_to_check_dup, [encrypted_email]).fetchall()
-        if len(check_out) and check_out[0][0] == encrypted_password:
+        sql_to_check_dup = "SELECT password FROM USER WHERE email=%s;"
+        mycursor.execute(sql_to_check_dup, [email], multi=True)
+        results = mycursor.fetchall()
+        if len(results) and results[0][0] == encrypted_password:
             session["user"] = email
             response = jsonify({"status": "OK"})
-        elif len(check_out): 
+        elif len(results): 
             response = jsonify({"status": "WRONG PASSWORD"})
         else:
             response = jsonify({"status": "NONEXISTENT USER"})
-        connection.close()
+        mydb.close()
         return response
 
 
@@ -86,7 +89,7 @@ def sign_up():
         if userType == "Teacher":
             # This class ID will be later 
             # put in a database
-            classIDNew = random.randint(0,9)
+            classIDNew = random.randint(0,999999)
 
         sql_to_check_dup = "SELECT COUNT(1) FROM users WHERE Email = ?;"
         check_out = cur.execute(sql_to_check_dup, [email]).fetchone()[0]
