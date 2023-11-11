@@ -45,21 +45,22 @@ CREATE TABLE USER(email VARCHAR(255) NOT NULL,
                   CHECK (userType in ('Teacher', 'Student', 'Other')),
                   PRIMARY KEY (email));
 
-CREATE TABLE TEACHER(teacherID INT NOT NULL,
+CREATE TABLE TEACHER(teacherID INT NOT NULL AUTO_INCREMENT,
                      email VARCHAR(255) NOT NULL,
                      PRIMARY KEY (teacherID),
                      FOREIGN KEY (email) REFERENCES USER(email));
 
-CREATE TABLE STUDENT(studentID INT NOT NULL,
+CREATE TABLE STUDENT(studentID INT NOT NULL AUTO_INCREMENT,
                      email VARCHAR(255) NOT NULL,
                      PRIMARY KEY (studentID),
                      FOREIGN KEY (email) REFERENCES USER(email));
 
-CREATE TABLE STORY(storyID VARCHAR(255) NOT NULL,
+CREATE TABLE STORY(storyID INT NOT NULL AUTO_INCREMENT,
                    author VARCHAR(100) NULL,
                    storyName VARCHAR(255) NOT NULL,
                    textEnglish TEXT NOT NULL,
                    textFrench TEXT NOT NULL,
+                   imageURL VARCHAR(1000) DEFAULT 'https://static.vecteezy.com/system/resources/previews/000/224/408/original/vector-cartoon-landscape-illustration.jpg',
                    CHECK (author REGEXP '[A-Za-z,.\s]+$'),
                    PRIMARY KEY (storyID));
 
@@ -71,7 +72,7 @@ CREATE TABLE CLASS_TEACHER(classID CHAR(16) NOT NULL,
 
 CREATE TABLE ASSIGNMENT(assignmentNum TINYINT NOT NULL,
                         classID CHAR(16) NOT NULL,
-                        storyID VARCHAR(255) NOT NULL,
+                        storyID INT NOT NULL,
                         deadlineDate DATE NULL,
                         deadlineTime TIME NULL,
                         PRIMARY KEY (assignmentNum, classID),
@@ -127,11 +128,7 @@ CREATE TRIGGER new_student
 AFTER INSERT ON USER 
 FOR EACH ROW
 BEGIN
-    DECLARE student_id INT;
-    IF NEW.userType = 'Student' THEN
-        SET student_id = (SELECT IFNULL(MAX(studentID), 0) + 1 FROM STUDENT);
-        INSERT INTO STUDENT  VALUES (student_id, NEW.email);
-    END IF;
+    INSERT INTO STUDENT(email) VALUES (NEW.email);
 END;
 //
 DELIMITER ;
@@ -146,11 +143,7 @@ CREATE TRIGGER new_teacher
 AFTER INSERT ON USER 
 FOR EACH ROW
 BEGIN
-    DECLARE teacher_id INT;
-    IF NEW.userType = 'Teacher' THEN
-        SET teacher_id = (SELECT IFNULL(MAX(teacherID), 0) + 1 FROM TEACHER);
-        INSERT INTO TEACHER  VALUES (teacher_id, NEW.email);
-    END IF;
+    INSERT INTO TEACHER(email) VALUES (NEW.email);
 END;
 //
 DELIMITER ;
@@ -319,23 +312,23 @@ INSERT INTO USER (email, password, userType) VALUES ('user12@email.test', 'ef797
 Populate story table
 */
 
-INSERT INTO STORY(storyID, storyName, textEnglish, textFrench) VALUES ('1', 'The terminator', '"The Terminator" (1984) is a sci-fi thriller directed by James Cameron. In a dystopian future, sentient machines led by Skynet wage war against humanity. To ensure their survival, they send a cyborg assassin, the Terminator (Arnold Schwarzenegger), back in time to kill Sarah Connor (Linda Hamilton), the mother of future resistance leader John Connor. However, resistance fighters also send a soldier, Kyle Reese (Michael Biehn), to protect Sarah. The film unfolds as a high-stakes chase, with the Terminator relentlessly pursuing Sarah while Reese tries to thwart it. This iconic film blends action, suspense, and a gripping battle against unstoppable technology.','"Terminator" (1984) est un thriller de science-fiction réalisé par James Cameron. Dans un futur dystopique, des machines conscientes dirigées par Skynet font la guerre à l''humanité. Pour assurer leur survie, elles envoient un assassin cyborg, le Terminator (Arnold Schwarzenegger), dans le passé pour tuer Sarah Connor (Linda Hamilton), la mère du futur chef de la résistance, John Connor. Cependant, des combattants de la résistance envoient également un soldat, Kyle Reese (Michael Biehn), pour protéger Sarah. Le film se déroule comme une poursuite à haut risque, avec le Terminator poursuivant implacablement Sarah tandis que Reese essaie de l''arrêter. Ce film emblématique mêle action, suspense et une lutte palpitante contre une technologie inarrêtable.');
+INSERT INTO STORY(storyName, textEnglish, textFrench, imageURL) VALUES ('The terminator', '"The Terminator" (1984) is a sci-fi thriller directed by James Cameron. In a dystopian future, sentient machines led by Skynet wage war against humanity. To ensure their survival, they send a cyborg assassin, the Terminator (Arnold Schwarzenegger), back in time to kill Sarah Connor (Linda Hamilton), the mother of future resistance leader John Connor. However, resistance fighters also send a soldier, Kyle Reese (Michael Biehn), to protect Sarah. The film unfolds as a high-stakes chase, with the Terminator relentlessly pursuing Sarah while Reese tries to thwart it. This iconic film blends action, suspense, and a gripping battle against unstoppable technology.','"Terminator" (1984) est un thriller de science-fiction réalisé par James Cameron. Dans un futur dystopique, des machines conscientes dirigées par Skynet font la guerre à l''humanité. Pour assurer leur survie, elles envoient un assassin cyborg, le Terminator (Arnold Schwarzenegger), dans le passé pour tuer Sarah Connor (Linda Hamilton), la mère du futur chef de la résistance, John Connor. Cependant, des combattants de la résistance envoient également un soldat, Kyle Reese (Michael Biehn), pour protéger Sarah. Le film se déroule comme une poursuite à haut risque, avec le Terminator poursuivant implacablement Sarah tandis que Reese essaie de l''arrêter. Ce film emblématique mêle action, suspense et une lutte palpitante contre une technologie inarrêtable.', 'https://cdn.vox-cdn.com/thumbor/7zCShJMgchSVQdZ2D8kZZMw_ujQ=/111x0:718x405/1400x1050/filters:focal(111x0:718x405):format(jpeg)/cdn.vox-cdn.com/uploads/chorus_image/image/46659994/terminator.0.0.jpg');
 
 
-INSERT INTO STORY VALUES ('2', 'CHAT GPT', 'Bee Movie', 'In "Bee Movie" (2007), an animated comedy, Barry B. Benson (voiced by Jerry Seinfeld), a disillusioned honeybee, embarks on an adventure beyond the hive. He forms an unusual bond with Vanessa Bloome (Renee Zellweger), a human florist, and discovers the exploitation of bees in the honey industry. Barry takes the legal route, suing humans for honey theft. The trial outcome, demanding bees to cease honey production, leads to global ecological chaos. Barry and the bees must restore the balance between nature and mankind. This quirky film mixes humor, environmental themes, and a message about the consequences of meddling with the natural world.','Dans "Bee Movie" (2007), une comédie animée, Barry B. Benson (exprimé par Jerry Seinfeld), une abeille ouvrière désillusionnée, se lance dans une aventure au-delà de la ruche. Il développe un lien inhabituel avec Vanessa Bloome (Renee Zellweger), une fleuriste humaine, et découvre l''exploitation des abeilles dans l''industrie du miel. Barry choisit la voie légale et poursuit les humains pour vol de miel. Le verdict du procès, exigeant que les abeilles cessent la production de miel, entraîne le chaos écologique mondial. Barry et les abeilles doivent rétablir l''équilibre entre la nature et l''humanité. Ce film décalé mêle humour, thèmes environnementaux et un message sur les conséquences de l''ingérence dans le monde naturel.');
+INSERT INTO STORY(author, storyName, textEnglish, textFrench) VALUES ('CHAT GPT', 'Bee Movie', 'In "Bee Movie" (2007), an animated comedy, Barry B. Benson (voiced by Jerry Seinfeld), a disillusioned honeybee, embarks on an adventure beyond the hive. He forms an unusual bond with Vanessa Bloome (Renee Zellweger), a human florist, and discovers the exploitation of bees in the honey industry. Barry takes the legal route, suing humans for honey theft. The trial outcome, demanding bees to cease honey production, leads to global ecological chaos. Barry and the bees must restore the balance between nature and mankind. This quirky film mixes humor, environmental themes, and a message about the consequences of meddling with the natural world.','Dans "Bee Movie" (2007), une comédie animée, Barry B. Benson (exprimé par Jerry Seinfeld), une abeille ouvrière désillusionnée, se lance dans une aventure au-delà de la ruche. Il développe un lien inhabituel avec Vanessa Bloome (Renee Zellweger), une fleuriste humaine, et découvre l''exploitation des abeilles dans l''industrie du miel. Barry choisit la voie légale et poursuit les humains pour vol de miel. Le verdict du procès, exigeant que les abeilles cessent la production de miel, entraîne le chaos écologique mondial. Barry et les abeilles doivent rétablir l''équilibre entre la nature et l''humanité. Ce film décalé mêle humour, thèmes environnementaux et un message sur les conséquences de l''ingérence dans le monde naturel.');
 
 
-INSERT INTO STORY VALUES ('3', 'Mr. CHAT, GPT', 'The terminator', '"The Terminator" (1984) is a sci-fi thriller directed by James Cameron. In a dystopian future, sentient machines led by Skynet wage war against humanity. To ensure their survival, they send a cyborg assassin, the Terminator (Arnold Schwarzenegger), back in time to kill Sarah Connor (Linda Hamilton), the mother of future resistance leader John Connor. However, resistance fighters also send a soldier, Kyle Reese (Michael Biehn), to protect Sarah. The film unfolds as a high-stakes chase, with the Terminator relentlessly pursuing Sarah while Reese tries to thwart it. This iconic film blends action, suspense, and a gripping battle against unstoppable technology.','
-"Terminator" (1984) est un thriller de science-fiction réalisé par James Cameron. Dans un futur dystopique, des machines conscientes dirigées par Skynet font la guerre à l''humanité. Pour assurer leur survie, elles envoient un assassin cyborg, le Terminator (Arnold Schwarzenegger), dans le passé pour tuer Sarah Connor (Linda Hamilton), la mère du futur chef de la résistance, John Connor. Cependant, des combattants de la résistance envoient également un soldat, Kyle Reese (Michael Biehn), pour protéger Sarah. Le film se déroule comme une poursuite à haut risque, avec le Terminator poursuivant implacablement Sarah tandis que Reese essaie de l''arrêter. Ce film emblématique mêle action, suspense et une lutte palpitante contre une technologie inarrêtable.');
+INSERT INTO STORY(author, storyName, textEnglish, textFrench, imageURL) VALUES ('Mr. CHAT, GPT', 'The terminator', '"The Terminator" (1984) is a sci-fi thriller directed by James Cameron. In a dystopian future, sentient machines led by Skynet wage war against humanity. To ensure their survival, they send a cyborg assassin, the Terminator (Arnold Schwarzenegger), back in time to kill Sarah Connor (Linda Hamilton), the mother of future resistance leader John Connor. However, resistance fighters also send a soldier, Kyle Reese (Michael Biehn), to protect Sarah. The film unfolds as a high-stakes chase, with the Terminator relentlessly pursuing Sarah while Reese tries to thwart it. This iconic film blends action, suspense, and a gripping battle against unstoppable technology.','
+"Terminator" (1984) est un thriller de science-fiction réalisé par James Cameron. Dans un futur dystopique, des machines conscientes dirigées par Skynet font la guerre à l''humanité. Pour assurer leur survie, elles envoient un assassin cyborg, le Terminator (Arnold Schwarzenegger), dans le passé pour tuer Sarah Connor (Linda Hamilton), la mère du futur chef de la résistance, John Connor. Cependant, des combattants de la résistance envoient également un soldat, Kyle Reese (Michael Biehn), pour protéger Sarah. Le film se déroule comme une poursuite à haut risque, avec le Terminator poursuivant implacablement Sarah tandis que Reese essaie de l''arrêter. Ce film emblématique mêle action, suspense et une lutte palpitante contre une technologie inarrêtable.', 'https://cdn.vox-cdn.com/thumbor/7zCShJMgchSVQdZ2D8kZZMw_ujQ=/111x0:718x405/1400x1050/filters:focal(111x0:718x405):format(jpeg)/cdn.vox-cdn.com/uploads/chorus_image/image/46659994/terminator.0.0.jpg');
 
 
-INSERT INTO STORY VALUES ('4', 'Mr. CHAT, GPT', 'Grey''s Anatomy', '"Grey''s Anatomy" is a long-running medical drama series that follows the lives of surgical interns, residents, and attending physicians at Grey Sloan Memorial Hospital. The show, created by Shonda Rhimes, delves into their professional and personal challenges, relationships, and the complex cases they encounter. Centered around Dr. Meredith Grey (Ellen Pompeo), the series explores the triumphs and tragedies in the high-stress world of healthcare. Themes of love, loss, ambition, and ethics are interwoven as the characters navigate their careers. "Grey''s Anatomy" has become known for its compelling characters and emotional storytelling while addressing medical and ethical dilemmas.','
+INSERT INTO STORY(author, storyName, textEnglish, textFrench) VALUES ( 'Mr. CHAT, GPT', 'Grey''s Anatomy', '"Grey''s Anatomy" is a long-running medical drama series that follows the lives of surgical interns, residents, and attending physicians at Grey Sloan Memorial Hospital. The show, created by Shonda Rhimes, delves into their professional and personal challenges, relationships, and the complex cases they encounter. Centered around Dr. Meredith Grey (Ellen Pompeo), the series explores the triumphs and tragedies in the high-stress world of healthcare. Themes of love, loss, ambition, and ethics are interwoven as the characters navigate their careers. "Grey''s Anatomy" has become known for its compelling characters and emotional storytelling while addressing medical and ethical dilemmas.','
 ""Grey''s Anatomy" est une série médicale à longue durée qui suit la vie des internes en chirurgie, des résidents et des médecins en exercice à l''hôpital Grey Sloan Memorial. Créée par Shonda Rhimes, la série explore leurs défis professionnels et personnels, leurs relations et les cas médicaux complexes auxquels ils sont confrontés. Centrée autour du Dr. Meredith Grey (Ellen Pompeo), la série explore les triomphes et les tragédies dans le monde stressant des soins de santé. Des thèmes tels que l''amour, la perte, l''ambition et l''éthique sont entrelacés alors que les personnages naviguent dans leur carrière. "Grey''s Anatomy" est connue pour ses personnages captivants et ses récits émotionnels tout en abordant des dilemmes médicaux et éthiques.');
 
 
 
 
-INSERT INTO STORY VALUES ('5', 'GPT. CHAT', 'Little Miss Sunshine', '"Little Miss Sunshine" (2006) is a heartwarming comedy-drama. The dysfunctional Hoover family embarks on a road trip to California in their beat-up VW bus to support their young daughter, Olive (Abigail Breslin), in the "Little Miss Sunshine" beauty pageant. Each family member is grappling with personal crises, from a failed self-help guru (Greg Kinnear) to a nihilistic teen (Paul Dano). Their journey is filled with chaos, bonding, and unexpected revelations as they learn the true meaning of family. The film explores themes of acceptance, individuality, and the pursuit of happiness, all wrapped in a charming, quirky, and touching story.','"Little Miss Sunshine" (2006) est une comédie dramatique chaleureuse. La dysfonctionnelle famille Hoover entreprend un voyage en voiture vers la Californie dans leur minibus VW en mauvais état pour soutenir leur jeune fille, Olive (Abigail Breslin), au concours de beauté "Little Miss Sunshine". Chaque membre de la famille fait face à des crises personnelles, du gourou du développement personnel en échec (Greg Kinnear) à l''adolescent nihiliste (Paul Dano). Leur voyage est rempli de chaos, de rapprochements et de révélations inattendues alors qu''ils découvrent la vraie signification de la famille. Le film explore les thèmes de l''acceptation, de l''individualité et de la quête du bonheur, le tout enveloppé dans une histoire charmante, excentrique et émouvante.');
+INSERT INTO STORY(author, storyName, textEnglish, textFrench) VALUES ('GPT. CHAT', 'Little Miss Sunshine', '"Little Miss Sunshine" (2006) is a heartwarming comedy-drama. The dysfunctional Hoover family embarks on a road trip to California in their beat-up VW bus to support their young daughter, Olive (Abigail Breslin), in the "Little Miss Sunshine" beauty pageant. Each family member is grappling with personal crises, from a failed self-help guru (Greg Kinnear) to a nihilistic teen (Paul Dano). Their journey is filled with chaos, bonding, and unexpected revelations as they learn the true meaning of family. The film explores themes of acceptance, individuality, and the pursuit of happiness, all wrapped in a charming, quirky, and touching story.','"Little Miss Sunshine" (2006) est une comédie dramatique chaleureuse. La dysfonctionnelle famille Hoover entreprend un voyage en voiture vers la Californie dans leur minibus VW en mauvais état pour soutenir leur jeune fille, Olive (Abigail Breslin), au concours de beauté "Little Miss Sunshine". Chaque membre de la famille fait face à des crises personnelles, du gourou du développement personnel en échec (Greg Kinnear) à l''adolescent nihiliste (Paul Dano). Leur voyage est rempli de chaos, de rapprochements et de révélations inattendues alors qu''ils découvrent la vraie signification de la famille. Le film explore les thèmes de l''acceptation, de l''individualité et de la quête du bonheur, le tout enveloppé dans une histoire charmante, excentrique et émouvante.');
 
 
 
@@ -343,12 +336,12 @@ INSERT INTO STORY VALUES ('5', 'GPT. CHAT', 'Little Miss Sunshine', '"Little Mis
 Populate class_teacher
 */
 
-INSERT INTO CLASS_TEACHER VALUES ('0000000000000001', '1');
-INSERT INTO CLASS_TEACHER VALUES ('0000000000000002', '3');
-INSERT INTO CLASS_TEACHER VALUES ('0000000000000003', '4');
-INSERT INTO CLASS_TEACHER VALUES ('0000000000000004', '2');
-INSERT INTO CLASS_TEACHER VALUES ('0000000000000005', '5');
-INSERT INTO CLASS_TEACHER VALUES ('0000000000000006', '3');
+INSERT INTO CLASS_TEACHER VALUES ('0000000000000001', 1);
+INSERT INTO CLASS_TEACHER VALUES ('0000000000000002', 2);
+INSERT INTO CLASS_TEACHER VALUES ('0000000000000003', 4);
+INSERT INTO CLASS_TEACHER VALUES ('0000000000000004', 2);
+INSERT INTO CLASS_TEACHER VALUES ('0000000000000005', 5);
+INSERT INTO CLASS_TEACHER VALUES ('0000000000000006', 3);
 
 /*
 Populate CLASSES
@@ -369,15 +362,15 @@ INSERT INTO CLASSES VALUES('0000000000000001', 4);
 Populate ASSIGNMENT
 */
 
-INSERT INTO ASSIGNMENT VALUES(1, '0000000000000006', '5', '2019-02-12', '23:59:00');
+INSERT INTO ASSIGNMENT VALUES(1, '0000000000000006', 5, '2019-02-12', '23:59:00');
 INSERT INTO ASSIGNMENT(assignmentNum, classID, storyID) 
-                       VALUES(1, '0000000000000005', '3');
-INSERT INTO ASSIGNMENT VALUES(2, '0000000000000006', '2', '2023-10-09', '23:59:59');
+                       VALUES(1, '0000000000000005', 3);
+INSERT INTO ASSIGNMENT VALUES(2, '0000000000000006', 2, '2023-10-09', '23:59:59');
 INSERT INTO ASSIGNMENT(assignmentNum, classID, storyID) 
-                       VALUES(1, '0000000000000002', '4');
-INSERT INTO ASSIGNMENT VALUES(3, '0000000000000006', '2', '2008-11-11', '14:56:59');
-INSERT INTO ASSIGNMENT VALUES(2, '0000000000000005', '5','2008-11-11', '14:56:59');
-INSERT INTO ASSIGNMENT VALUES(1, '0000000000000001', '5','2008-11-11', '14:56:59');
+                       VALUES(1, '0000000000000002', 4);
+INSERT INTO ASSIGNMENT VALUES(3, '0000000000000006', 2, '2008-11-11', '14:56:59');
+INSERT INTO ASSIGNMENT VALUES(2, '0000000000000005', 5,'2008-11-11', '14:56:59');
+INSERT INTO ASSIGNMENT VALUES(1, '0000000000000001', 5,'2008-11-11', '14:56:59');
 
 INSERT INTO CLASSES VALUES('0000000000000001', 2);
 

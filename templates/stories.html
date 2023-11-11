@@ -5,30 +5,15 @@
 
 
 <div class="story-cards">
-
-    <div class="story-card">
-        <img src="static/img/puss-in-boots-g8679dc1c7_1280.png" alt="puss-in-boots" width="200">
-        <div class="content">
-            <h3>Le chat botté - Puss in boots</h3>
-            <a class = "read-btn" href="puss-in-boots">Read <span>&rarr;</span></a>
-        </div> 
-    </div>
-
-    <div class="story-card">
-        <a href="puss-in-boots"><img src="static/img/ugly-duckling.jpeg" alt="puss-in-boots" width="200"></a>
-        <div class="content">
-            <h3>Le chat botté - Puss in boots</h3>
-            <a class = "read-btn" href="puss-in-boots">Read <span>&rarr;</span></a>
-        </div> 
-    </div>
-
-    <div class="story-card">
-        <a href="puss-in-boots"><img src="static/img/puss-in-boots-g8679dc1c7_1280.png" alt="puss-in-boots" width="200"></a>
-        <div class="content">
-            <h3>Le chat botté - Puss in boots</h3>
-            <a class = "read-btn" href="puss-in-boots">Read <span>&rarr;</span></a>
-        </div> 
-    </div>
+    {% for story in stories %}
+        <div class = "story-card">
+            <img src= "{{story['imageURL']}}" alt="{{story['title']}}" width="200">
+            <div class="content">
+                <h3>{{story["title"]}}</h3>
+                <a class = "read-btn" href="puss-in-boots">Read <span>&rarr;</span></a>
+            </div>
+         </div>
+    {% endfor %}
     <!-- This will add a new story -->
     <div class="story-card">
         <a href="add-story">+</a>

@@ -69,15 +69,17 @@
                     <input class="signup" type="password" name="password" id="signup-password" placeholder="Password" autocomplete="off" required><br>
                 </div>
                 <div class="name">
-                    <input class="login" type="name" name="name" id="firstName" placeholder="First Name"><br>
+                    <input class="signup" type="name" name="name" id="firstName" placeholder="First Name"><br>
                 </div>
                 <div class="name">
-                    <input class="login" type="name" name="name" id="lastName" placeholder="Last Name"><br>
+                    <input class="signup" type="name" name="name" id="lastName" placeholder="Last Name"><br>
                 </div>
-                <input type="checkbox" id="Teacher" name="teacher" value="teacher">
+                <input type="radio" id="Teacher" name="userType" value="teacher">
                 <label for="Teacher"> I am a Teacher!</label><br><br>
-                <input type="checkbox" id="Student" name="student" value="student">
+                <input type="radio" id="Student" name="userType" value="student">
                 <label for="Student"> I am a Student!</label><br><br>
+                <input type="radio" id="Other" name="userType" value="other">
+                <label for="Other"> Other</label><br><br>
                 <input class="signup" type="submit">
             </form>
 

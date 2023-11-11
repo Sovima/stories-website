@@ -102,7 +102,24 @@ def sign_up():
 
 @app.route("/stories")
 def stories():
-    return render_template("stories.html", css_link="/static/css/story-cards.css")
+    mydb = mysql.connector.connect(host = "localhost",
+                                        user = "root",
+                                        password = os.getenv("MYSQL_PASS"),
+                                        database="stories")
+    cur = mydb.cursor()
+    sql = "SELECT * FROM STORY LIMIT 10;"
+    cur.execute(sql)
+    results = cur.fetchall()
+    stories = []
+
+    for tuple in results:
+        title = tuple[2]
+        imageURL = tuple[5]
+        stories.append({"imageURL": imageURL, "title": title})
+
+
+    return render_template("stories.html", css_link="/static/css/story-cards.css",
+                           stories=stories)
 
 
 @app.route("/puss-in-boots")
@@ -130,8 +147,5 @@ def change_mode():
     session["mode"] = request.get_json()["mode"]
     print("!!!! This is the session" + session["mode"])
     return ""
-
-
-
 
 

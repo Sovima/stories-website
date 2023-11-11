@@ -51,3 +51,11 @@ My CS348 project will be based on this website. Hence, the website might need so
 5. When a student is enrolling, they must select a class that exists
 6. When registering, a teachers and students must enroll in at least one class
 7. Students will have the option to update the status of their Assignment
+
+
+
+To-dos for the datatypes:
+- [ ] Add a check to email to make sure it follows the rigth format (with )
+- [ ] Set foreign keys using alter because there are some circular foreign keys
+- [ ] Add a check to make sure fname and lname don't contain any special characters
+- [ ] Class is a varchar of 16 but can only contain values 0-9
