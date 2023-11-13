@@ -107,7 +107,7 @@ def stories():
                                         password = os.getenv("MYSQL_PASS"),
                                         database="stories")
     cur = mydb.cursor()
-    sql = "SELECT * FROM STORY LIMIT 10;"
+    sql = "SELECT * FROM STORY LIMIT 4;"
     cur.execute(sql)
     results = cur.fetchall()
     stories = []
@@ -115,16 +115,34 @@ def stories():
     for tuple in results:
         title = tuple[2]
         imageURL = tuple[5]
-        stories.append({"imageURL": imageURL, "title": title})
+        storyID = tuple[0]
+        stories.append({"imageURL": imageURL, "title": title, 'storyID': storyID})
 
 
     return render_template("stories.html", css_link="/static/css/story-cards.css",
                            stories=stories)
 
 
-@app.route("/puss-in-boots")
-def puss_in_boots():
-    return render_template("puss-in-boots.html", css_link="/static/css/one-story.css")
+@app.route("/stories/<storyID>")
+def story(storyID):
+    mydb = mysql.connector.connect(host = "localhost",
+                                    user = "root",
+                                    password = os.getenv("MYSQL_PASS"),
+                                    database="stories")
+    storyID = int(storyID)
+    cur = mydb.cursor()
+    sql = "SELECT * FROM STORY WHERE storyID=%s LIMIT 1;"
+    cur.execute(sql, [storyID], multi=True)
+    results = cur.fetchall()
+    for tuple in results:
+        textEnglish = tuple[3]
+        textFrench = tuple[4]
+        title = tuple[2]
+    story = {"textEnglish": textEnglish, "textFrench": textFrench, 'title': title}
+
+    return render_template("story.html", 
+                           css_link="/static/css/one-story.css",
+                           story = story)
 
 
 @app.route("/submit-form", methods=["POST"])

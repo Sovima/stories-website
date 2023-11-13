@@ -10,7 +10,7 @@
             <img src= "{{story['imageURL']}}" alt="{{story['title']}}" width="200">
             <div class="content">
                 <h3>{{story["title"]}}</h3>
-                <a class = "read-btn" href="puss-in-boots">Read <span>&rarr;</span></a>
+                <a class = "read-btn" href="{{ url_for('story', storyID=story['storyID']) }}">Read <span>&rarr;</span></a>
             </div>
          </div>
     {% endfor %}

@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    <div class="top">
+        <a class="back-button" href="/stories"> <span class="back-arrow">&larr;</span> Back</a>
+        <h1 class="title"> <mark>{{story["title"]}}</mark> </p>
+    </div>
+    <div class="texts">
+        <section class="french-side">
+            {{story["textFrench"]}}
+        </section>
+        <hr class="horizontal">
+        <section class="english-side">
+            {{story["textEnglish"]}}
+        </section>
+    </div>
+
+    <div class="top-button">
+        <a href=""></a>
+    </div>
+    <script src="/static/js/highlights.js"></script>
+    
+{% endblock %}
