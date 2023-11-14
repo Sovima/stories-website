@@ -117,7 +117,7 @@ def stories():
         imageURL = tuple[5]
         storyID = tuple[0]
         stories.append({"imageURL": imageURL, "title": title, 'storyID': storyID})
-
+    
 
     return render_template("stories.html", css_link="/static/css/story-cards.css",
                            stories=stories)
