@@ -41,8 +41,8 @@ def login():
     if flask.request.method == "POST" :
         # Here we are adding a new user
         mydb = mysql.connector.connect(host = "localhost",
-                                       user = "root",
-                                       password = os.getenv("MYSQL_PASS"),
+                                       user = "appUser",
+                                       password = "password",
                                        database="stories")
         print(mydb)
         mycursor = mydb.cursor()
@@ -76,8 +76,8 @@ def logout():
 @app.route("/signed-up", methods = ["POST"])
 def sign_up():
     mydb = mysql.connector.connect(host = "localhost",
-                                    user = "root",
-                                    password = os.getenv("MYSQL_PASS"),
+                                    user = "appUser",
+                                    password = "password",
                                     database="stories")
     cur = mydb.cursor()
     if flask.request.method == "POST" :
@@ -103,8 +103,8 @@ def sign_up():
 @app.route("/stories")
 def stories():
     mydb = mysql.connector.connect(host = "localhost",
-                                        user = "root",
-                                        password = os.getenv("MYSQL_PASS"),
+                                        user = "appUser",
+                                        password = "password",
                                         database="stories")
     cur = mydb.cursor()
     sql = "SELECT * FROM STORY LIMIT 4;"
@@ -126,8 +126,8 @@ def stories():
 @app.route("/stories/<storyID>")
 def story(storyID):
     mydb = mysql.connector.connect(host = "localhost",
-                                    user = "root",
-                                    password = os.getenv("MYSQL_PASS"),
+                                    user = "appUser",
+                                    password = 'password',
                                     database="stories")
     storyID = int(storyID)
     cur = mydb.cursor()
