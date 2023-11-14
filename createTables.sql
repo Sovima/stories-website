@@ -1,37 +1,6 @@
 /*
 Database and table creation, with necessary constraints
 */
-
-
-
-
-
-
-
-
-
-
-
--- NOTE: ADD DEFAULT VALUE FOR COMPlETION STATUS AND DEADLINE DATE AND TIME
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 CREATE DATABASE stories;
 USE stories;
 CREATE TABLE USER(email VARCHAR(255) NOT NULL,
@@ -79,7 +48,7 @@ CREATE TABLE ASSIGNMENT(assignmentNum TINYINT NOT NULL,
                         FOREIGN KEY (classID) REFERENCES CLASS_TEACHER(classID),
                         FOREIGN KEY (storyID) REFERENCES STORY(storyID));
 
-CREATE TABLE CLASSES(classID CHAR(16) NOT NULL,
+CREATE TABLE CLASS(classID CHAR(16) NOT NULL,
                      studentID INT NOT NULL,
                      PRIMARY KEY (classID, studentID),
                      FOREIGN KEY (classID) REFERENCES CLASS_TEACHER(classID),
@@ -88,7 +57,7 @@ CREATE TABLE CLASSES(classID CHAR(16) NOT NULL,
 CREATE TABLE ASSIGNMENT_STATUS(studentID INT NOT NULL, 
                                assignmentNum TINYINT NOT NULL,
                                classID CHAR(16) NOT NULL,
-                               completionStatus VARCHAR(255) NOT NULL,
+                               completionStatus VARCHAR(11) NOT NULL DEFAULT 'Not Started',
                                CHECK (completionStatus in 
                                        ('Started', 'Completed', 
                                        'Not Started')),
@@ -96,7 +65,7 @@ CREATE TABLE ASSIGNMENT_STATUS(studentID INT NOT NULL,
                                FOREIGN KEY (assignmentNum, classID) REFERENCES
                                             ASSIGNMENT(assignmentNum, classID),
                                FOREIGN KEY (studentID, classID) 
-                                         REFERENCES CLASSES(studentID, classID));
+                                         REFERENCES CLASS(studentID, classID));
 
 
 /*
@@ -113,7 +82,7 @@ FOR EACH ROW
 BEGIN
     INSERT INTO ASSIGNMENT_STATUS(studentID, assignmentNum, classID, completionStatus)
     SELECT studentID, NEW.assignmentNum, classID, 'Not Started'
-    FROM CLASSES
+    FROM CLASS
     WHERE classID = NEW.classID;
 END;
 //
@@ -156,7 +125,7 @@ Trigger for populating ASSIGNMENT_STATUS table for new student in class
 DELIMITER //
 
 CREATE TRIGGER new_student_assignment
-AFTER INSERT ON CLASSES
+AFTER INSERT ON CLASS
 FOR EACH ROW
 BEGIN
     INSERT INTO ASSIGNMENT_STATUS(studentID, assignmentNum, classID, completionStatus)
@@ -188,7 +157,7 @@ Trigger for removing assignment_status if assignment is removed
 */
 DELIMITER //
 CREATE TRIGGER remove_student_from_class
-BEFORE DELETE ON CLASSES
+BEFORE DELETE ON CLASS
 FOR EACH ROW
 BEGIN
     DELETE FROM ASSIGNMENT_STATUS
@@ -219,7 +188,7 @@ CREATE TRIGGER remove_class
 BEFORE DELETE ON CLASS_TEACHER
 FOR EACH ROW
 BEGIN
-    DELETE FROM CLASSES
+    DELETE FROM CLASS
     WHERE classID = OLD.classID;
     DELETE FROM ASSIGNMENT
     WHERE classID = OLD.classID;
@@ -243,14 +212,14 @@ END;
 DELIMITER ;
 
 /*
-Trigger for removing student from classes if student is removed
+Trigger for removing student from CLASS if student is removed
 */
 DELIMITER //
 CREATE TRIGGER remove_student
 BEFORE DELETE ON STUDENT
 FOR EACH ROW
 BEGIN
-    DELETE FROM CLASSES
+    DELETE FROM CLASS
     WHERE studentID = OLD.studentID;
 END;
 //
@@ -344,17 +313,17 @@ INSERT INTO CLASS_TEACHER VALUES ('0000000000000005', 5);
 INSERT INTO CLASS_TEACHER VALUES ('0000000000000006', 3);
 
 /*
-Populate CLASSES
+Populate CLASS
 */
 
-INSERT INTO CLASSES VALUES('0000000000000005', 1);
-INSERT INTO CLASSES VALUES('0000000000000004', 2);
-INSERT INTO CLASSES VALUES('0000000000000001', 5);
-INSERT INTO CLASSES VALUES('0000000000000002', 1);
-INSERT INTO CLASSES VALUES('0000000000000003', 4);
-INSERT INTO CLASSES VALUES('0000000000000006', 3);
-INSERT INTO CLASSES VALUES('0000000000000004', 5);
-INSERT INTO CLASSES VALUES('0000000000000001', 4);
+INSERT INTO CLASS VALUES('0000000000000005', 1);
+INSERT INTO CLASS VALUES('0000000000000004', 2);
+INSERT INTO CLASS VALUES('0000000000000001', 5);
+INSERT INTO CLASS VALUES('0000000000000002', 1);
+INSERT INTO CLASS VALUES('0000000000000003', 4);
+INSERT INTO CLASS VALUES('0000000000000006', 3);
+INSERT INTO CLASS VALUES('0000000000000004', 5);
+INSERT INTO CLASS VALUES('0000000000000001', 4);
 
 
 
@@ -369,10 +338,10 @@ INSERT INTO ASSIGNMENT VALUES(2, '0000000000000006', 2, '2023-10-09', '23:59:59'
 INSERT INTO ASSIGNMENT(assignmentNum, classID, storyID) 
                        VALUES(1, '0000000000000002', 4);
 INSERT INTO ASSIGNMENT VALUES(3, '0000000000000006', 2, '2008-11-11', '14:56:59');
-INSERT INTO ASSIGNMENT VALUES(2, '0000000000000005', 5,'2008-11-11', '14:56:59');
 INSERT INTO ASSIGNMENT VALUES(1, '0000000000000001', 5,'2008-11-11', '14:56:59');
+INSERT INTO ASSIGNMENT VALUES(2, '0000000000000005', 5,'2008-11-11', '14:56:59');
 
-INSERT INTO CLASSES VALUES('0000000000000001', 2);
+INSERT INTO CLASS VALUES('0000000000000001', 2);
 
 /*
 Creating views tables
@@ -384,7 +353,7 @@ FROM USER;
 
 CREATE VIEW CLASS_1_STUDENTS AS
 SELECT studentID
-FROM CLASSES
+FROM CLASS
 WHERE classID = '0000000000000001';
 
 
@@ -399,9 +368,9 @@ SELECT email, userType FROM USER;
 SELECT MAX(studentID) FROM STUDENT;
 
 
-SELECT CLASSES.classID, CLASS_TEACHER.teacherID, CLASSES.studentID 
+SELECT CLASS.classID, CLASS_TEACHER.teacherID, CLASS.studentID 
        FROM CLASS_TEACHER
-       INNER JOIN CLASSES ON CLASS_TEACHER.classID=CLASSES.classID;
+       INNER JOIN CLASS ON CLASS_TEACHER.classID=CLASS.classID;
 
 SELECT STORY.storyID, ASSIGNMENT.assignmentNum, STORY.author  
        FROM ASSIGNMENT 
@@ -410,3 +379,22 @@ SELECT STORY.storyID, ASSIGNMENT.assignmentNum, STORY.author
 SELECT STORY.storyID, ASSIGNMENT.assignmentNum, STORY.author  
        FROM ASSIGNMENT 
        INNER JOIN STORY ON STORY.storyID=ASSIGNMENT.storyID;
+
+/*
+Security (roles and permissions)
+*/
+
+CREATE USER 'appUser'@'localhost' IDENTIFIED BY 'password';
+GRANT INSERT, SELECT, DELETE ON stories.USER TO 'appUser'@'localhost';
+GRANT SELECT, DELETE ON stories.STUDENT TO 'appUser'@'localhost';
+GRANT SELECT, DELETE ON stories.TEACHER TO 'appUser'@'localhost';
+GRANT INSERT, SELECT, DELETE ON stories.STORY TO 'appUser'@'localhost';
+GRANT INSERT, SELECT, DELETE ON stories.CLASS TO 'appUser'@'localhost';
+GRANT INSERT, SELECT, DELETE ON stories.CLASS_TEACHER TO 'appUser'@'localhost';
+GRANT INSERT, SELECT, DELETE ON stories.ASSIGNMENT TO 'appUser'@'localhost';
+GRANT SELECT, DELETE ON stories.ASSIGNMENT_STATUS TO 'appUser'@'localhost';
+
+
+-- drop user appUser@localhost;
+
+-- flush privileges;
